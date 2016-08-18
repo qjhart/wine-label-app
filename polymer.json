@@ -4,6 +4,7 @@
   "fragments": [
     "src/wine-home.html",
     "src/wine-label-info.html",
-    "src/wine-about.html"
+      "src/wine-about.html",
+      "src/wine-label-part.html"
   ]
 }

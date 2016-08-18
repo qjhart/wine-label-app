@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="wine-label-part.html">
 
 <dom-module id="wine-label-info">
 
@@ -31,6 +32,7 @@
 	 top: 265px;
 	 left: 150px;}
      div.label_part:hover {
+	 opacity: 0.5;
 	 background-color: yellow;
      }
     </style>
@@ -51,6 +53,13 @@
       <h1>{{label_part}}</h1>
       {{label_part_info}}
     </div>
+
+    <wine-label-part id='foo' label='Brand Name'>
+      <p>This is an example Label part.</p>
+      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate
+	repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum,
+	tibique copiosae expetenda mel ea.</p>
+    </wine-label-part>
 
   </template>
 
@@ -83,7 +92,6 @@
       "brand_name":["Brand Name","<p>Brand Name Stuff.</p><p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>"],
     },
     in_label_part: function(e) {
-      console.log('hover'+e.target.id);
       this.label_part=this.LABEL[e.target.id][0];
       this.label_part_info=this.LABEL[e.target.id][1];
     },
