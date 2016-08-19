@@ -1,7 +1,7 @@
 {
-  "name": "app-drawer-template",
+  "name": "Wine Label Application",
   "authors": [
-    "The Polymer Authors"
+    "Quinn Hart"
   ],
   "private": true,
   "dependencies": {

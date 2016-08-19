@@ -1,6 +1,6 @@
 {
-  "name": "My App",
-  "short_name": "My App",
+  "name": "Wine Label Example Application",
+  "short_name": "wine-label-ex",
     "icons": [{
       "src": "images/app-icon-32.png",
       "type": "image/png",
