@@ -20,9 +20,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="wine-icons.html">
-<!-- Quinn's Stuff -->
-<link rel="import" href="../bower_components/wine-label/wine-label-ttb.html">
-<link rel="import" href="../bower_components/wine-label/wine-label.html">
 
 <dom-module id="wine-app">
 
@@ -33,9 +30,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
-       background: linear-gradient(to bottom, #4D0717 0%, #0a0a0a 100%);
+        background: linear-gradient(to bottom, #4D0717 0%, #0a0a0a 100%);
         background-image: linear-gradient(rgb(77, 7, 23) 0%, rgb(10, 10, 10) 100%);
-       }
+      }
       
       app-header {
         background-color: var(--app-primary-color);
@@ -68,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <app-location route="{{route}}"></app-location>
+    <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
     <app-drawer-layout fullbleed>
@@ -77,9 +74,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer>
         <app-toolbar>Explore</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home" href="/home">Home</a>
-          <a name="label-ttb" href="/label-ttb">Example Standard Label</a> 
-          <a name="label-custom" href="/label-custom">Example Custom Label</a>
+          <a name="home" href="#/home">Home</a>
+          <a name="ttb" href="#/ttb">Example Standard Label</a>
+          <a name="custom" href="#/custom">Example Custom Label</a>
           <!--<a name="about" href="/about">About this App</a>-->
         </iron-selector>
       </app-drawer>
@@ -94,40 +91,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </app-toolbar>
         </app-header>
 
-          <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-            <wine-home name="home"></wine-home>
-            <wine-label-ttb name="label-ttb"></wine-label-ttb>
-            <wine-label name="label-custom" img="napavinters.jpg">
-              <wine-label-part id="overview" part="Overview"> 
-              <p>Wine labels provide useful information to assist in the selection and appreciation of wine. Different countries
-                have different standards for what information is required on a wine label. In the United States, wine labels
-                are regulated by the Alcohol and Tobacco Tax and Trade Bureau of the U.S. Treasury Department (often referred
-                to as the TTB). Some states such as California have adopted supplemental labeling laws. Napa Valley wineries
-                have historically provided more information than the minimum amount required by law.</p>
-              <p>This infographic and guide will help you understand a wine label like a pro, so you can buy with confidence.</p>
-            </wine-label-part>
-
-            <wine-label-part id="brand" part="Brand Name" ul="56,48" size="234,50">
-              <p>Mandatory. If no brand name is on the label, the bottler's name is considered the brand. It is also useful to
-                refer to the bottler's name if a winery has several brands.</p>
-            </wine-label-part>
-
-            <wine-label-part id="type" part="Wine Type" ul="50,303" size="250,23">
-              <p>Mandatory. A wine may be labeled by a grape or varietal name such as Chardonnay or Cabernet Sauvignon, or it
-                may be given a generic name such as “Red Table Wine.” Wines using varietal names must derive at least 75% of
-                their volume from the grape designated, and the varietal name must appear on the label with an appellation
-                of origin. Although not required, many wineries voluntarily list the proportions of the grape varieties that
-                comprise their wine blends.</p>
-            </wine-label-part>
-
-            <wine-label-part id="vineyard" part="Vineyard Designation" ul="81,366" size="179,20">
-              <p>Optional. Many wineries name the vineyard where the grapes were grown because the winery believes the property
-                produces an unusually high-quality grape. The winery or an independent grower may own the vineyard. When using
-                a vineyard designation on a wine label, federal regulations require that 95% of the grapes be grown in the
-                named vineyard.</p>
-            </wine-label-part>
-          </wine-label>
-          <!--<wine-about name="about"></wine-about>-->
+        <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+          <wine-home name="home"></wine-home>
+          <wine-ttb name="ttb"></wine-ttb>
+          <wine-custom name="custom"></wine-custom>
         </iron-pages>
       </app-header-layout>
 

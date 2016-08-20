@@ -1,40 +1,29 @@
-# Wine Label Applications
 
-This is a simple Polymer application that demonstrates the use of the wine-label element.
+_[Demo](https://qjhart.github.io/wine-label-app/)_
 
+# Wine Label Application
+
+This is a simple Polymer application that demonstrates the use of the wine-label element.  It is basically a 
+standard Polymer drawer application surrounding some example _[wine-label](https://www.github.com/qjhart/wine-label)_  elements.  
+
+This application is an educational example only.  Images and information were obtained from the Alcohol and Tobacco Tax and Trade Bureau's _[Wine Labeling Regulations](https://www.ttb.gov/wine/wine-labeling.shtml)_, with an additional example from _[Napa Vintners](https://napavintners.com/wines/how_to_read_a_wine_label.asp)_.
 
 ### Build
 
-This command performs HTML, CSS, and JS minification on the application
-dependencies, and generates a service-worker.js file with code to pre-cache the
-dependencies based on the entrypoint and fragments specified in `polymer.json`.
-The minified files are output to the `build/unbundled` folder, and are suitable
-for serving from a HTTP/2+Push compatible server.
+There seem to be some small problems with the polymer build,  in that all components of the shared bower files
+not copied to the install directory, that's the ```bower_components``` item below.
 
-In addition the command also creates a fallback `build/bundled` folder,
-generated using fragment bundling, suitable for serving from non
-H2/push-compatible servers or to clients that do not support H2/Push.
-
-    polymer build
+    polymer build --sources manifest.json images/* bower_components/wine-label/label-ttb.png bower_components/webcomponentsjs/webcomponents-lite.min.js
 
 ### Test the build
 
-This command serves the minified version of the app in an unbundled state, as it would
-be served by a push-compatible server:
-
-    polymer serve build/unbundled
+Although the build produces bundled and unbundled code, I've removed the cache server, and There
+is very little difference, besides the bundling of the files.
 
 This command serves the minified version of the app generated using fragment bundling:
 
     polymer serve build/bundled
 
-### Extend
+### Installation 
 
-You can extend the app by adding more elements that will be demand-loaded
-e.g. based on the route, or to progressively render non-critical sections
-of the application.  Each new demand-loaded fragment should be added to the
-list of `fragments` in the included `polymer.json` file.  This will ensure
-those components and their dependencies are added to the list of pre-cached
-components (and will have bundles created in the fallback `bundled` build).
-
-
+This demo installation for this example is provided by copying the final bundled build into the ```gh-pages``` branch of this repository.

@@ -2,6 +2,9 @@
   "entrypoint": "index.html",
   "shell": "src/wine-app.html",
   "fragments": [
-    "src/wine-home.html"
+    "src/wine-home.html",
+    "src/wine-custom.html",
+    "src/wine-ttb.html",
+    "src/wine-icons.html"
   ]
 }
