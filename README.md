@@ -1,29 +1,88 @@
+# Polymer App Toolbox - Starter Kit
 
-_[Demo](https://qjhart.github.io/wine-label-app/)_
+[![Build Status](https://travis-ci.org/PolymerElements/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/PolymerElements/polymer-starter-kit)
 
-# Wine Label Application
+This template is a starting point for building apps using a drawer-based
+layout. The layout is provided by `app-layout` elements.
 
-This is a simple Polymer application that demonstrates the use of the wine-label element.  It is basically a 
-standard Polymer drawer application surrounding some example _[wine-label](https://www.github.com/qjhart/wine-label)_  elements.  
+This template, along with the `polymer-cli` toolchain, also demonstrates use
+of the "PRPL pattern" This pattern allows fast first delivery and interaction with
+the content at the initial route requested by the user, along with fast subsequent
+navigation by pre-caching the remaining components required by the app and
+progressively loading them on-demand as the user navigates through the app.
 
-This application is an educational example only.  Images and information were obtained from the Alcohol and Tobacco Tax and Trade Bureau's _[Wine Labeling Regulations](https://www.ttb.gov/wine/wine-labeling.shtml)_, with an additional example from _[Napa Vintners](https://napavintners.com/wines/how_to_read_a_wine_label.asp)_.
+The PRPL pattern, in a nutshell:
+
+* **Push** components required for the initial route
+* **Render** initial route ASAP
+* **Pre-cache** components for remaining routes
+* **Lazy-load** and progressively upgrade next routes on-demand
+
+### Migrating from Polymer Starter Kit v1?
+
+[Check out our blog post that covers what's changed in PSK2 and how to migrate!](https://www.polymer-project.org/1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli.html)
+
+### Setup
+
+##### Prerequisites
+
+Install [polymer-cli](https://github.com/Polymer/polymer-cli):
+
+    npm install -g polymer-cli
+
+##### Initialize project from template
+
+    mkdir my-app
+    cd my-app
+    polymer init starter-kit
+
+### Start the development server
+
+This command serves the app at `http://localhost:8080` and provides basic URL
+routing for the app:
+
+    polymer serve --open
+
 
 ### Build
 
-There seem to be some small problems with the polymer build,  in that all components of the shared bower files
-not copied to the install directory, that's the ```bower_components``` item below.
+This command performs HTML, CSS, and JS minification on the application
+dependencies, and generates a service-worker.js file with code to pre-cache the
+dependencies based on the entrypoint and fragments specified in `polymer.json`.
+The minified files are output to the `build/unbundled` folder, and are suitable
+for serving from a HTTP/2+Push compatible server.
 
-    polymer build --sources manifest.json images/* bower_components/wine-label/label-ttb.png bower_components/webcomponentsjs/webcomponents-lite.min.js
+In addition the command also creates a fallback `build/bundled` folder,
+generated using fragment bundling, suitable for serving from non
+H2/push-compatible servers or to clients that do not support H2/Push.
 
-### Test the build
+    polymer build
 
-Although the build produces bundled and unbundled code, I've removed the cache server, and There
-is very little difference, besides the bundling of the files.
+### Preview the build
 
-This command serves the minified version of the app generated using fragment bundling:
+This command serves the minified version of the app at `http://localhost:8080`
+in an unbundled state, as it would be served by a push-compatible server:
+
+    polymer serve build/unbundled
+
+This command serves the minified version of the app at `http://localhost:8080`
+generated using fragment bundling:
 
     polymer serve build/bundled
 
-### Installation 
+### Run tests
 
-This demo installation for this example is provided by copying the final bundled build into the ```gh-pages``` branch of this repository.
+This command will run
+[Web Component Tester](https://github.com/Polymer/web-component-tester) against the
+browsers currently installed on your machine.
+
+    polymer test
+
+### Adding a new view
+
+You can extend the app by adding more views that will be demand-loaded
+e.g. based on the route, or to progressively render non-critical sections
+of the application.  Each new demand-loaded fragment should be added to the
+list of `fragments` in the included `polymer.json` file.  This will ensure
+those components and their dependencies are added to the list of pre-cached
+components (and will have bundles created in the fallback `bundled` build).

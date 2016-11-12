@@ -1,0 +1,72 @@
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+
+<link rel="import" href="wine-labels-list.html">
+<link rel="import" href="wine-labels-label.html">
+
+<dom-module id="wine-labels">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #FFF;
+      }
+    </style>
+
+    <app-route route="{{route}}"
+               pattern="/list"
+               active="{{listActive}}"></app-route>
+
+    <app-route route="{{route}}"
+               pattern="/label/:slug"
+               active="{{postsActive}}"
+               data="{{postsData}}"></app-route>
+
+    <wine-labels-list
+               active={{listActive}}
+               loading="{{isLoading}}"></wine-labels-list>
+
+    <wine-labels-label post="{{postsData.slug}}"
+               active="{{postsActive}}"
+               loading="{{isLoading}}"></wine-labels-label>
+
+    <div class="overlay" hidden$="[[!isLoading]]">
+      <paper-spinner active="[[isLoading]]"></paper-spinner>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'wine-labels',
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      }
+
+    });
+  </script>
+
+</dom-module>

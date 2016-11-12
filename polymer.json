@@ -1,10 +1,19 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/wine-app.html",
+  "shell": "src/my-app.html",
   "fragments": [
-    "src/wine-home.html",
-    "src/wine-custom.html",
-    "src/wine-ttb.html",
-    "src/wine-icons.html"
+    "src/my-view1.html",
+    "src/my-view2.html",
+    "src/my-view3.html",
+    "src/my-view404.html"
+  ],
+  "sourceGlobs": [
+   "src/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ]
 }
