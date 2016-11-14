@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html">
 <link rel="import" href="wine-icons.html">
 
 <dom-module id="wine-app">
@@ -67,9 +68,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}"
-							 pattern="/:page"
-							 data="{{routeData}}"
-							 tail="{{subroute}}"></app-route>
+               pattern="/:page"
+               data="{{routeData}}"
+               tail="{{subroute}}"></app-route>
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
@@ -94,15 +95,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <iron-pages
-						role="main"
-						selected="[[page]]"
-						fallback-selection="404"
-						attr-for-selected="name">
+            style="height: 100%"
+            role="main"
+            selected="[[page]]"
+            fallback-selection="404"
+            attr-for-selected="name">
           <wine-home name="home"></wine-home>
           <wine-labels name="labels"
-														category="art"
-												 route="{{subroute}}">
-					</wine-labels>
+                            category="art"
+                         route="{{subroute}}">
+          </wine-labels>
           <wine-ttb name="ttb"></wine-ttb>
           <wine-custom name="custom"></wine-custom>
         </iron-pages>
@@ -125,11 +127,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         '_routePageChanged(routeData.page)'
       ],
 
+      ready : function() {
+        UCDWineSDK.collections.wines.load();
+      },
+
       _routePageChanged: function(page) {
         this.page = page || 'home';
       },
 
-			_pageChanged: function(page) {
+      _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('wine-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
