@@ -66,7 +66,7 @@ module.exports = new WineCollection();
 'use strict';
 
 function Config() {
-  this.host = 'http://localhost:8080';
+  this.host = 'https://qjhart.github.io/wine-label-app';
 
   this.init = function (data) {
     for (var key in data) {
