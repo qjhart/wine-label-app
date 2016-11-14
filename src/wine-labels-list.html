@@ -1,0 +1,215 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html">
+
+
+<dom-module id="wine-labels-list">
+
+  <template>
+      <style>
+
+        :host {
+          display: block;
+          @apply(--paper-font-common-base);
+        }
+
+        app-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          background-color: #4285f4;
+          color: white;
+        }
+
+        .photoContent {
+          @apply(--layout);
+          background-color: #ddd;
+          position: relative;
+          width: 300px;
+          height: 300px;
+          margin: 8px;
+        }
+
+        .photoContent:hover .detail{
+          opacity: 1;
+        }
+
+        .photoContent > iron-image {
+          @apply(--layout-flex);
+        }
+
+        .photoContent > .detail {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+          color: white;
+          font-size: 20px;
+          font-weight: 100;
+          padding: 20px;
+          opacity: 0;
+          transition: opacity 0.1s;
+        }
+
+        .loadingIndicator {
+          font-size: 16px;
+          text-align: center;
+          height: 60px;
+        }
+
+        .loadingIndicator paper-spinner {
+          margin-right: 20px;
+          vertical-align: middle;
+        }
+
+        @media (max-width: 800px) {
+          .photoContainer {
+            width: calc(50% - 16px);
+          }
+
+          .photoContent {
+            width: auto;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .photoContainer {
+            width: 100%;
+          }
+
+          .photoContent > .detail {
+            opacity: 1;
+          }
+        }
+
+        ::-webkit-input-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        ::-moz-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        :-ms-input-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        ::-ms-input-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+      </style>
+
+    <style>
+      :host {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom:0;
+      }
+
+      :host([active]) {
+        display: block;
+      }
+
+      .post {
+        position: relative;
+        margin-bottom: 160px;
+      }
+
+      .post a {
+        display: block;
+        text-decoration: none;
+        color: #212121;
+      }
+
+      p {
+        line-height: 33.18px;
+      }
+    }
+    </style>
+
+
+
+
+      <iron-list items="[[data]]" as="label" grid style="height:100%">
+        <template>
+          <div class="photoContainer">
+            <div class="photoContent" tabindex$="[[tabIndex]]">
+                <iron-image sizing="cover"
+                            src="[[label.browseImage]]" alt="[[label.brandName]]">
+                </iron-image>
+                <!-- <iron-image style="width:900px; height:512px;" placeholder="[[item.img_placeholder]]"
+                sizing="cover" preload fade src="[[item.img]]"
+                alt="[[item.img_alt]]"></iron-image> -->
+                <div class="detail">
+                    [[label.brandName]]<br/>[[label.otherDesignation]]
+                  <a href="#/labels/label/[[label.wine]]"> <iron-icon icon="menu"></iron-icon></a>
+                </div>
+            </div>
+          </div>
+        </template>
+      </iron-list>
+
+
+
+      <div class="loadingIndicator" hidden$="[[!loading]]">
+        <paper-spinner active$="[[loading]]"></paper-spinner> Fetching wine labels</b>
+      </div>
+
+  </template>
+
+  <script>
+   Polymer({
+
+       is: 'wine-labels-list',
+
+       properties: {
+          active: {
+              type: Boolean,
+              value: false,
+              reflectToAttribute: true
+          },
+          
+          loading: {
+               type: Boolean,
+               value: false,
+               notify: true
+          },
+
+          data: {
+             type : Array,
+             value : function() {
+               return [];
+             }
+          }
+       },
+
+       ready : function() {
+         if( UCDWineSDK.collections.wines.allLoaded ) this._setData();
+         else UCDWineSDK.events.on('all-wine-data-loaded', this._setData.bind(this));
+       },
+
+       _setData : function() {
+          this.data = UCDWineSDK.collections.wines.data;
+          this.loading = false;
+       }
+
+    });
+  </script>
+
+</dom-module>

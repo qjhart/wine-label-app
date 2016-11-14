@@ -1,0 +1,195 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-form/iron-form.html">
+<link rel="import" href="../wine-label-sdk/wine-label-sdk.html">
+
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<!--
+`wine-label-label`
+demo demo/index.html
+-->
+
+<dom-module id="wine-label-item">
+	<template>
+		<style>
+		 .one-item {
+				 @apply(--layout-horizontal);
+		 }
+		</style>
+
+	<div class="container one-item">
+		<content></content>
+		<paper-icon-button icon="icons:info" title="info"></paper-icon-button>
+		<paper-icon-button icon="icons:create" title="edit"></paper-icon-button>
+	</div>
+	</template>
+
+	<script>
+    Polymer({
+		is: 'wine-label-item',
+		});
+	</script>
+
+</dom-module>
+
+<dom-module id="wine-label-label">
+  <template>
+
+    <style>
+      :host {
+        display: none;
+      }
+
+      :host([active]) {
+        display: block;
+      }
+
+      p {
+        line-height: 33.18px;
+        white-space: pre-wrap;
+      }
+
+      iron-image {
+        /*width:900px;
+        height:512px;*/
+        @apply(--wine-label-label-img);
+      }
+
+		  .flex-item {
+					@apply(--layout-flex);
+			}
+
+		 [label^=brandName] {
+				--paper-input-container-input: {
+						 font-size: 48px;
+						 width: 10em;
+						 color: goldenrod;
+				 }
+		 }
+		 [label^=varietal] {
+				 --paper-input-container-input: {
+						 font-size: 36px;
+						 color: brown;
+				 };
+		 }
+		 [label^=otherDesignation] {
+				 --paper-input-container-input: {
+						 font-size: 36px;
+						 color: brown;
+				 };
+		 }
+		 [label^=year] {
+				 --paper-input-container-input: {
+						 font-size: 48px;
+						 width: 4em;
+						 color: goldenrod;
+				 };
+		 }
+
+		 .flex-center-justified {
+				 @apply(--layout-vertical);
+				 @apply(--layout-center-justified);
+		 }
+
+		 .flex-horizontal {
+				 @apply(--layout-horizontal);
+		 }
+
+
+    </style>
+
+    <form>
+				<wine-label-item>
+					<paper-input label="brandName" value="[[data.brandName]]"></paper-input>
+				</wine-label-item>
+				<wine-label-item>
+					<paper-input label="varietal" value="[[data.varietal]]"></paper-input>
+				</wine-label-item>
+
+				<wine-label-item>
+					<paper-input label="otherDesignation" value="[[data.otherDesignation]]"></paper-input>
+				</wine-label-item>
+
+				<wine-label-item>
+					<paper-input label="year" value="[[data.year]]" auto-validate pattern="(1[89]|20)[0-9][0-9]" error-message="Requires Valid Year" maxlength=4></paper-input>
+				</wine-label-item>
+
+				<div class="container flex-horizontal">
+					<wine-label-item>
+						<paper-dropdown-menu label="Wine Color">
+							<paper-listbox class="dropdown-content" attr-for-selected="value" selected="[[data.color]]">
+								<paper-item value="w:Red">Red Wine</paper-item>
+								<paper-item value="w:White">White Wine</paper-item>
+								<paper-item value="w:Rose">Rose</paper-item>
+							</paper-listbox>
+						</paper-dropdown-menu>
+					</wine-label-item>
+					<wine-label-item>
+						<paper-dropdown-menu label="Wine Type">
+							<paper-listbox class="dropdown-content" attr-for-selected="value" selected="[[data.type]]">
+								<paper-item value="w:Still">Still</paper-item>
+								<paper-item value="w:Sparkling">Sparkling</paper-item>
+								<paper-item value="w:Fortified">Fortified</paper-item>
+							</paper-listbox>
+						</paper-dropdown-menu>
+					</wine-label-item>
+				</div>
+				<paper-button raised onclick="_submit(event)">Submit</paper-button>
+				<paper-button raised onclick="_reset(event)">Reset</paper-button>
+    </form>
+		<iron-image src="[[data.image]]" alt="[[label.brandName]]"></iron-image>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'wine-label-label',
+
+      properties: {
+        wineLabelId : {
+          type : String,
+          value : '',
+          observer : '_setData'
+        },
+
+        active: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+
+        data : {
+          type : Object,
+          value : function() {
+            return {};
+          }
+        }
+      },
+
+      ready : function() {
+        UCDWineSDK.events.on('all-wine-data-loaded', this._setData.bind(this));
+        if( UCDWineSDK.collections.wines.allLoaded ) this._setData();
+      },
+
+      _setData : function() {
+        if( !this.wineLabelId ) return;
+        if( UCDWineSDK.collections.wines.loading ) return;
+
+        UCDWineSDK.collections.wines.get(this.wineLabelId, function(item){
+          if( !item ) throw new Error('Unknown wine label '+this.wineLabelId);
+          console.log(item);
+          this.data = item;
+        }.bind(this));
+      }
+
+    });
+  </script>
+
+</dom-module>

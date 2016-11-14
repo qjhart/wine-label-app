@@ -1,0 +1,61 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/wine-label/wine-label.html">
+
+<dom-module id="wine-custom">
+
+  <template>
+
+    <wine-label name="label-custom" img="images/napavinters.jpg">
+      <wine-label-part id="overview" part="Overview">
+        <p>Wine labels provide useful information to assist in the selection and appreciation of wine. Different countries have
+          different standards for what information is required on a wine label. In the United States, wine labels are regulated
+          by the Alcohol and Tobacco Tax and Trade Bureau of the U.S. Treasury Department (often referred to as the TTB).
+          Some states such as California have adopted supplemental labeling laws. Napa Valley wineries have historically
+          provided more information than the minimum amount required by law.
+        </p>
+        <p>This infographic and guide will help you understand a wine label like a pro, so you can buy with confidence.</p>
+      </wine-label-part>
+
+      <wine-label-part id="brand" part="Brand Name" ul="56,48" size="234,50">
+        <p>Mandatory. If no brand name is on the label, the bottler's name is considered the brand. It is also useful to refer
+          to the bottler's name if a winery has several brands.</p>
+      </wine-label-part>
+
+      <wine-label-part id="type" part="Wine Type" ul="50,303" size="250,23">
+        <p>Mandatory. A wine may be labeled by a grape or varietal name such as Chardonnay or Cabernet Sauvignon, or it may
+          be given a generic name such as “Red Table Wine.” Wines using varietal names must derive at least 75% of their
+          volume from the grape designated, and the varietal name must appear on the label with an appellation of origin.
+          Although not required, many wineries voluntarily list the proportions of the grape varieties that comprise their
+          wine blends.</p>
+      </wine-label-part>
+
+      <wine-label-part id="vineyard" part="Vineyard Designation" ul="81,366" size="179,20">
+        <p>Optional. Many wineries name the vineyard where the grapes were grown because the winery believes the property produces
+          an unusually high-quality grape. The winery or an independent grower may own the vineyard. When using a vineyard
+          designation on a wine label, federal regulations require that 95% of the grapes be grown in the named vineyard.</p>
+      </wine-label-part>
+    </wine-label>
+
+
+  </template>
+
+  <script>
+
+    Polymer({
+      is: 'wine-custom'
+    });
+
+  </script>
+
+</dom-module>

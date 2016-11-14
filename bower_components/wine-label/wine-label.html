@@ -1,0 +1,252 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="wine-label-part.html">
+<!-- Allows discovery from document tools -->
+<link rel="import" href="wine-label-ttb.html">
+
+<!--
+`wine-label`
+Polymer element to deliver wine label information via simple graphical interface.  This is a general purpose
+tag that needs to be instantiated with an image and appropriate wine-label-parts.
+
+> `wine-label` is in alpha.  Please use with caution.
+
+In the normal usage, a `wine-label` element takes as input an image, and a set of label parts.  
+The element displays the image, and as the user mouses over the image, highlighted regions
+of the image are shown, corresponding to a label part.  On focus, the description of this part 
+is made for the user.
+
+Here is a basic example:
+
+		<wine-label img="label.png">
+		<wine-label-part overview part="Overview" > 
+			<p>Time to learn about wine labels!</p>
+		</wine-label-part>
+		<wine-label-part brand part="Brand Name" ul="20,20" size="100,20" > 
+			<p>Brand Names tell us who made the wine.</p>
+		</wine-label-part>
+		</wine-label>   
+
+Note that the order of the `wine-label-parts` is also the default tabbing order for the element.
+
+### Styling
+
+`<wine-label>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--wine-label-box-border` | Border style for label-part boxes | `1px solid #3f51b5`
+`--wine-label-box-radius` | Border radius for label-part boxes | `3px`
+`--wine-label-focus-color` | Box color for hover and focus status | `#3f51b5`
+`--wine-label-hover-opacity` | Box opacity for hover status | `0.25`
+`--wine-label-focus-opacity` | Box opacity for focus status | `0.25`
+
+
+@element wine-label
+@demo demo/napavinters.html 
+@demo demo/index.html
+-->
+
+<dom-module id="wine-label">
+
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: 16px;
+      }
+      
+      .wine-label {
+        /* Label-wide style*/
+      }
+      [imageAlign] {
+        text-align: center;
+      }
+      
+      .label {
+        position: relative;
+        display: inline-block;
+        padding: 0px 0px;
+      }
+      
+      :host::content div.partDiv {
+        position: absolute;
+        border: var(--wine-label-box-border, 1px solid #3f51b5);
+        border-radius: var(--wine-label-box-radius, 3px);
+      }
+      
+      :host::content div.partDiv:hover {
+        opacity: var(--wine-label-hover-opacity, 0.25);
+        background-color: var(--wine-label-focus-color, #3f51b5);
+        cursor: help;
+      }
+      
+      :host::content div.partDiv:focus {
+        opacity: var(--wine-label-focus-opacity, 0.25);
+        background-color: var(--wine-label-focus-color, #3f51b5);
+      }
+      
+      :host::content h1 {
+        font-size: 22px;
+        margin: 16px 0;
+        color: #212121;
+      }
+    </style>
+    <div class="wine-label">
+      <div imageAlign>
+        <div id="imageDiv" class="label">
+          <img src=[[img]]>
+        </div>
+      </div>
+      <div>
+        <content></content>
+      </div>
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+    is: 'wine-label',
+
+    properties : {
+    },
+    /* TODO: Add functional `wine-label-part` addition.  Adds the div boxes from the 
+    definition.
+     */
+    addWineLabelPart: function(label_part) {
+        var partDiv;
+        var attr;
+
+        var ul=label_part.getAttribute('ul');
+        var size=label_part.getAttribute('size');
+
+        if (ul && size) {
+            partDiv=document.createElement('div');
+            attr=document.createAttribute('part_for');
+            attr.value=c.id;
+            partDiv.setAttributeNode(attr);
+
+            attr=document.createAttribute('class');
+            attr.value='partDiv';
+            partDiv.setAttributeNode(attr);
+
+            attr=document.createAttribute('tabindex');
+            attr.value=0;
+            partDiv.setAttributeNode(attr);
+
+            partDiv.addEventListener('focus',focused);
+            partDiv.addEventListener('blur', blured.bind(this));
+
+            // How about I get the padding and add it here? 
+            ul=ul.split(',');
+            size=size.split(',');
+            partDiv.style.left=ul[0]+'px';
+            partDiv.style.top=ul[1]+'px';
+            partDiv.style.width=size[0]+'px';
+            partDiv.style.height=size[1]+'px';
+            c.style.display='none';
+            iDiv.appendChild(partDiv);
+        }
+    },
+    /* TODO: Add functional `wine-label-part` deletion.  This will delete the boxes as well.
+    */
+    deleteWineLabelPart: function(label_part) {}, 
+    onTouchEnd: function(e) {
+      console.log('OnTouchEnd');
+        var children=Polymer.dom(this).children;
+        var partFor=e.target.attributes.part_for.value;
+        children.forEach(function (c){
+            c.style.display=(c.id===partFor)?'block':'none';
+        });
+    },
+    blured: function(e) {
+        var children=Polymer.dom(this).children;
+        var partFor=e.target.attributes.part_for.value;
+        children.forEach(function (c){
+            if (c.id===partFor) {
+                c.style.display='none';
+            }
+        });
+        emptyDivs.forEach(function (c){
+              c.style.display='block';
+        });
+    },
+
+    // Because Ive dumped the label-part making here, you cant currently
+    // dynamically update the wine-label.  This should be replaced with
+    // and add and remove function.  For now, I play it safe by keeping 
+    // track of the static function as attached.
+    ready: function() {
+        var iDiv=this.$.imageDiv;
+        var children=Polymer.dom(this).children;
+
+        var emptyDivs=[];
+
+        var that=this;
+
+        function focused(e) {
+            var partFor=e.target.attributes.part_for.value;
+            children.forEach(function (c){
+                c.style.display=(c.id===partFor)?'block':'none';
+            });
+        }
+
+        function blured(e) {
+          var partFor=e.target.attributes.part_for.value;
+          children.forEach(function (c){
+              if (c.id===partFor) {
+                  c.style.display='none';
+              }
+          });
+          emptyDivs.forEach(function (c){
+                c.style.display='block';
+          });
+        }
+
+        function onTouchEnd(e) {
+           e.target.focus();
+         }
+     
+        children.forEach(function(c){
+            var partDiv;
+          var attr;
+
+            var ul=c.getAttribute('ul');
+            var size=c.getAttribute('size');
+
+            if (ul && size) {
+                partDiv=document.createElement('div');
+            
+                attr=document.createAttribute('part_for');
+                attr.value=c.id;
+                partDiv.setAttributeNode(attr);
+
+                attr=document.createAttribute('class');
+                attr.value='partDiv';
+                partDiv.setAttributeNode(attr);
+
+                attr=document.createAttribute('tabindex');
+                attr.value=0;
+                partDiv.setAttributeNode(attr);
+
+               partDiv.addEventListener('focus',focused.bind(this));
+               partDiv.addEventListener('touchend',onTouchEnd);
+               partDiv.addEventListener('blur', blured.bind(this));
+
+               // How about I get the padding and add it here? 
+                ul=ul.split(',');
+                size=size.split(',');
+                partDiv.style.left=ul[0]+'px';
+                partDiv.style.top=ul[1]+'px';
+                partDiv.style.width=size[0]+'px';
+                partDiv.style.height=size[1]+'px';
+                c.style.display='none';
+                iDiv.appendChild(partDiv);
+            } else {
+                emptyDivs.push(c);
+             }
+        });
+    },
+    });
+  </script>
+</dom-module>

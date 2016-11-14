@@ -1,0 +1,35 @@
+{
+  "name": "wine-label",
+  "description": "Polymer element to deliver wine label information via simple graphical interface",
+  "main": [
+    "wine-label.html"
+  ],
+  "authors": [
+    "Quinn Hart <qjhart@ucdavis.edu>"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "ignore": [
+    "node_modules",
+    "test",
+    "demo"
+  ],
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/qjhart/wine-label",
+  "version": "0.1.2",
+  "_release": "0.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.2",
+    "commit": "ef7e98671fc2ba60f3e1cc12437e9d6eb853a0f7"
+  },
+  "_source": "https://github.com/qjhart/wine-label.git",
+  "_target": "^0.1.2",
+  "_originalSource": "qjhart/wine-label"
+}

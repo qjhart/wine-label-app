@@ -1,0 +1,168 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="wine-label.html">
+<link rel="import" href="wine-label-part.html">
+
+
+<!--
+`wine-label-ttb`
+Polymer element to deliver basic wine label information regulations from the US from the TTB.  One
+may use this tag alone to get the standard TTB label information.
+
+>* This tag includes copyrighted material without permission.  It is only to be used for educational purposes.
+
+The label can be used as follows:
+
+    <wine-label-ttb/>
+
+@element wine-label-ttb
+@demo demo/ttb.html 
+-->
+
+<dom-module id="wine-label-ttb">
+  <template>
+
+<wine-label id="label-img" img=[[defImg]]>    
+<wine-label-part id="overview" part="WINE LABELING REGULATIONS">
+<p>As consumers become more adventuresome in their wine selections, they look to the label for more information.
+  What makes one wine different from another?  What is the dominant grape in the wine? Where are those grapes grown? 
+  Although TTB consumer protection regulations only apply to wine of at least seven percent alcohol by volume, 
+  this pamphlet contains enough basic information to assist the consumer in making an informed choice when buying 
+  wine This pamphlet discusses wine made from grapes, although wine may also be made from other types of fruit 
+  and agricultural products.  TTB regulations can be quite detailed in regard to the production of a wine and 
+  the information appearing on the bottle; not every possibility is presented here, but this guide will give 
+  you a good grasp of the fundamentals.</p>
+</wine-label-part>
+
+<wine-label-part id="brand-name" part="BRAND NAME" ul="46,18" size="227,62">
+<p>The brand name is used to identify and market a wine. A brand
+name may not mislead the consumer about the age, identity, origin,
+or other characteristics of the wine.</p>
+</wine-label-part>
+
+<wine-label-part id="vintage-date" part="VINTAGE DATE" ul="145,313" size="34,13">
+<p>A vintage date on the label indicates the year in which the grapes
+were harvested. If a vintage date is shown on the label at all, an
+appellation of origin smaller than a country must also be shown. If an
+American or imported wine uses a State or county, or the foreign
+equivalent, as an appellation of origin, 85 percent of the grapes must
+be from that year; if a viticultural area or the foreign equivalent is
+used, the percentage is raised to 95 percent.</p>
+</wine-label-part>
+
+<wine-label-part id="varietals" part="VARIETAL DESIGNATIONS" ul="96,350" size="128,12">
+<p>Varietal designations are the names of the dominant grapes used in
+the wine. Cabernet Sauvignon, Chardonnay, Zinfandel, and Merlot
+are examples of grape varieties. A varietal designation on the label
+requires an appellation of origin and means that at least 75 percent of
+the grapes used to make the wine are of that variety, and that the
+entire 75 percent were grown in the labeled appellation (except "Vitis
+labrusca"grapes, such as Concord, which require at least
+51 percent).</p>
+</wine-label-part>
+
+<wine-label-part id="estate-bottled" part="ESTATE BOTTLED" ul="113,326" size="96,12">
+<p>“Estate Bottled” means that 100 percent of the wine came from
+grapes grown on land owned or controlled by the winery, which must
+be located in a viticultural area. The winery must crush and ferment
+the grapes and finish, age, and bottle the wine in a continuous
+process on their premises. The winery and the vineyard must be in
+the same viticultural area.</p>
+</wine-label-part>
+
+<wine-label-part id="other" part="OTHER DESIGNATIONS" ul="113,326" size="96,12">
+<p>Wine labels are not required to bear a varietal designation. Other
+designations may be used to identify the wine, such as Red Wine,
+Rose Wine, White Wine, Table Wine (if no more than 14% alcohol by
+volume) or Dessert Wine (if over 14% alcohol by volume).</p>
+<p>Some imported wines are designated with a distinctive name which is
+permissible only on specific wines from a particular place or region
+within the country of origin, for example, Asti Spumanti from Italy and
+Bordeaux from France.</p>
+</wine-label-part>
+
+<wine-label-part id="origin" part="APPELLATION OF ORIGIN" ul="125,337" size="72,12">
+<p>Appellation of origin is another name for the place in which the
+dominant grapes used in the wine were grown. It can be the name of
+a country, State, county or geographic region called a viticultural
+area, or their foreign equivalents.</p>
+<p>A country, State, or county appellation or their foreign equivalent
+on the label means that at least 75 percent of the wine is produced
+from grapes grown in the place named.</p>
+<!--</wine-label-part>-->
+
+<!--<wine-label-part id="area" part="VITICULTURAL AREA" ul="125,337" size="72,12">-->
+<H1>VITICULTURAL AREA</H1>
+<p>An American viticultural area is a defined grape-growing region in the
+U.S. with geographic features (such as soil and climate) that set it
+apart from the surrounding areas.</p>
+<p>A viticultural area appellation on the label indicates that 85 percent or
+more of the wine was produced from grapes grown in the named
+area.</p>
+</wine-label-part>
+
+<wine-label-part id="alcohol" part="ALCOHOL CONTENT" ul="37,399" size="69,14">
+<p>A statement of alcohol content in percent by volume appears on most
+labels. As an alternative, some bottlers may label wine with an
+alcohol content from 7 to 14 percent as "Table Wine"or "Light Wine."</p>
+</wine-label-part>
+
+<wine-label-part label-warning part="HEALTH WARNING STATEMENT" ul="16,426" size="290,87">
+<p>By law, this statement is required on all alcohol beverages containing
+0.5 percent or more alcohol by volume.</p>
+
+<p><b>GOVERNMENT WARNING</b> (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK
+ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. 
+(2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE
+MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.</p>
+</wine-label-part>
+
+<wine-label-part id="sulfites" part="DECLARATION OF SULFITES" ul="113,525" size="92,12">
+<p>Required on any wine intended for interstate commerce that contains
+10 or more parts per million of sulfur dioxide. Not required for wines
+only sold in intrastate commerce.</p>
+</wine-label-part>
+
+<wine-label-part id="address" part="NAME AND ADDRESS" ul="36,375" size="251,13">
+<p>The name and address of the bottler or importer must appear on the
+container. It is also permissible for a bottler/importer to use a duly
+authorized trade name in place of its usual operating name.</p>
+<p>Domestic wines may have this statement further qualified with terms
+such as “Produced,” meaning that not less than 75 percent of the
+wine was fermented at the stated address, or “Vinted,” which means
+that the wine was subjected to cellar treatment at the stated address.</p>
+
+<!--Cannot Overlap files, since we need a tabindex, only last gets focus-->
+<!--<wine-label-part id="country" part="COUNTRY OF ORIGIN" ul="36,375" size="251,13">-->
+<H1>COUNTRY OF ORIGIN</H1>
+<p>Pursuant to regulations issued by U.S. Customs and Border
+Protection, a Country of Origin statement is required on containers of
+imported wines. Acceptable statements include “Product of (insert
+name of country)” or “Produced in (insert name of country).”</p>
+<!--</wine-label-part>-->
+</wine-label-part>
+
+<wine-label-part id="contents" part="NET CONTENTS" ul="243,399" size="38,12">
+<p>The net contents of a wine container must be stated in metric units of
+measure. Wine must be bottled in 50 ml, 100 ml, 187 ml, 375 ml,
+500 ml, 750 ml, 1 L, 1.5 L, or 3 L sizes. Containers over 3 L must be
+bottled in quantities of even liters. No other sizes may be bottled.</p>
+</wine-label-part>
+</wine-label>    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'wine-label-ttb',
+      properties: {
+        defImg: {
+	      type: String,
+	      value: "label-ttb.png"
+        },
+      },
+      ready: function() {
+        this.defImg=this.resolveUrl("label-ttb.png");
+
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,54 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="wine-home">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">Home</div>
+      <h1>Wine Label Application Tester</h1>
+      <p>This application shows an example of using the wine-label element.  It used in two ways.  The first method gives a standard TTB wine label.  This allows users to install a single element that delivers a standard label desciription tool</p>
+
+      <p>The second shows a custom wine-label with entries specific to that label.  In this case the user includes their own image, and label parts with locations.  This allows general customization of the wine label.</p>
+
+      <p>For mobile devices, you should be able to attach this application to your home screen.</p>
+      </div>
+
+      <div class="card">
+      <h1>Acknowledgement</h1>
+
+      <p>Code and demos can be found at the repositories, <a href="https://www.github.com/qjhart/wine-label-app" target="_blank">wine-label-app</a> and <a href="https://www.github.com/qjhart/wine-label" target="_blank">wine-label</a>.
+
+      <p>This application is an educational example only.  Images and information were obtained from the Alcohol and Tobacco Tax and Trade Bureau's <a href="https://www.ttb.gov/wine/wine-labeling.shtml">Wine Labeling Regulations</a>, with an additional example from <a href="https://napavintners.com/wines/how_to_read_a_wine_label.asp">Napa Vintners</a>.
+      </div>
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'wine-home'
+
+    });
+
+  </script>
+
+</dom-module>

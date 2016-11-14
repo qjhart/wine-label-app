@@ -1,0 +1,21 @@
+{
+  "name": "wine-label-label",
+  "main": "wine-label-label.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "iron-image": "PolymerElements/iron-image",
+    "paper-input": "PolymerElements/paper-input",
+    "paper-listbox": "PolymerElements/paper-listbox",
+    "paper-item": "PolymerElements/paper-item",
+    "wine-label-sdk": "git@github.com:jrmerz/wine-label-sdk.git",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.4.1",
+    "iron-icons": "PolymerElements/iron-icons#^1.1.3",
+    "iron-form": "PolymerElements/iron-form#^1.1.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

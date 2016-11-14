@@ -1,0 +1,44 @@
+{
+  "name": "wine-label-app",
+  "authors": [
+    "UC Davis Library",
+    "Quinn Hart <qjhart@ucdavis.edu>"
+  ],
+  "private": true,
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Makefile",
+    "firebase.json"
+  ],
+  "dependencies": {
+    "app-route": "PolymerElements/app-route#^0.9.1",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.10",
+    "paper-spinner": "PolymerElements/paper-spinner#^1.1.1",
+    "iron-image": "PolymerElements/iron-image#^1.2.3",
+    "app-layout": "PolymerElements/app-layout#^0.10.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#~1.1.0",
+    "polymer": "Polymer/polymer#^1.6.0",
+    "wine-label": "qjhart/wine-label#^0.1.2",
+    "wine-label-label": "git@github.com:qjhart/wine-label-label.git",
+    "wine-label-sdk": "git@github.com:qjhart/wine-label-sdk.git"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.0"
+  },
+  "homepage": "https://github.com/qjhart/wine-label-app",
+  "_release": "55b9642a3e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "55b9642a3e77e3ecc87682d45e5e65cb38bc790d"
+  },
+  "_source": "https://github.com/qjhart/wine-label-app.git",
+  "_target": "master",
+  "_originalSource": "qjhart/wine-label-app",
+  "_direct": true
+}
