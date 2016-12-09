@@ -3,7 +3,11 @@
   {
 		"wine": "a:b0250",
 		"history":[
-			["join",[[6,7,8,9]]]
+			["edit",[3,{"type":"vintage.date"}]],
+			["edit",[4,{"text":"INGLENOOK","type":"brandName"}]],
+			["drop",[5]],
+			["join",[[6,7,8,9],{"type":"vintage.alcohol"}]],
+			["edit",[6,{"text":"ALCOHOL 12½ % BY VOLUME"}]]
 		],
 		"annotations": {
 			"3":{"type":"other","text":"1943","geometry":{"type":"Polygon","coordinates":[[[944,-231],[1094,-231],[1094,-299],[944,-299],[944,-231]]]}},
