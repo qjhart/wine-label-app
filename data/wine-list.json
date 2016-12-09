@@ -1,15 +1,78 @@
 {
 	"list": [
   {
+		"wine": "a:b0250",
+		"history":[
+			["join",[[6,7,8,9]]]
+		],
+		"annotations": {
+			"3":{"type":"other","text":"1943","geometry":{"type":"Polygon","coordinates":[[[944,-231],[1094,-231],[1094,-299],[944,-299],[944,-231]]]}},
+			"4":{"type":"other","text":"NGLENO0K","geometry":{"type":"Polygon","coordinates":[[[618,-336],[1468,-336],[1468,-559],[618,-559],[618,-336]]]}},
+			"5":{"type":"other","text":"NAPA.","geometry":{"type":"Polygon","coordinates":[[[1019,-723],[1073,-704],[1080,-725],[1027,-745],[1019,-723]]]}},
+			"6":{"type":"other","text":"ALCOHOL","geometry":{"type":"Polygon","coordinates":[[[558,-780],[701,-780],[701,-808],[558,-808],[558,-780]]]}},
+			"7":{"type":"other","text":"1212%","geometry":{"type":"Polygon","coordinates":[[[716,-780],[791,-780],[791,-808],[716,-808],[716,-780]]]}},
+			"8":{"type":"other","text":"BY","geometry":{"type":"Polygon","coordinates":[[[1316,-780],[1346,-780],[1346,-804],[1316,-804],[1316,-780]]]}},
+			"9":{"type":"other","text":"VOLUME","geometry":{"type":"Polygon","coordinates":[[[1363,-780],[1484,-780],[1484,-804],[1363,-804],[1363,-780]]]}},
+			"10":{"type":"other","text":"NAPA","geometry":{"type":"Polygon","coordinates":[[[749,-838],[963,-838],[963,-883],[749,-883],[749,-838]]]}},
+			"11":{"type":"other","text":"VALLEY","geometry":{"type":"Polygon","coordinates":[[[989,-838],[1287,-838],[1287,-883],[989,-883],[989,-838]]]}},
+			"12":{"type":"other","text":"PINOT","geometry":{"type":"Polygon","coordinates":[[[828,-893],[1017,-893],[1017,-952],[828,-952],[828,-893]]]}},
+			"13":{"type":"other","text":"NOIR","geometry":{"type":"Polygon","coordinates":[[[1063,-893],[1215,-893],[1215,-952],[1063,-952],[1063,-893]]]}},
+			"14":{"type":"other","text":"PRODUCED","geometry":{"type":"Polygon","coordinates":[[[850,-968],[988,-968],[988,-990],[850,-990],[850,-968]]]}},
+			"15":{"type":"other","text":"&","geometry":{"type":"Polygon","coordinates":[[[1005,-968],[1023,-968],[1023,-993],[1005,-993],[1005,-968]]]}},
+			"16":{"type":"other","text":"BOTTLED","geometry":{"type":"Polygon","coordinates":[[[1037,-968],[1151,-968],[1151,-993],[1037,-993],[1037,-968]]]}},
+			"17":{"type":"other","text":"BY","geometry":{"type":"Polygon","coordinates":[[[1166,-968],[1195,-968],[1195,-993],[1166,-993],[1166,-968]]]}},
+			"18":{"type":"other","text":"INGLENOOK","geometry":{"type":"Polygon","coordinates":[[[812,-992],[992,-992],[992,-1024],[812,-1024],[812,-992]]]}},
+			"19":{"type":"other","text":"VINEYARD","geometry":{"type":"Polygon","coordinates":[[[1009,-992],[1159,-992],[1159,-1024],[1009,-1024],[1009,-992]]]}},
+			"20":{"type":"other","text":"CO.","geometry":{"type":"Polygon","coordinates":[[[1177,-992],[1230,-992],[1230,-1024],[1177,-1024],[1177,-992]]]}},
+			"24":{"type":"other","text":"BONDED","geometry":{"type":"Polygon","coordinates":[[[539,-1027],[632,-1027],[632,-1046],[539,-1046],[539,-1027]]]}},
+			"25":{"type":"other","text":"WINERY","geometry":{"type":"Polygon","coordinates":[[[640,-1027],[725,-1027],[725,-1046],[640,-1046],[640,-1027]]]}},
+			"26":{"type":"other","text":"No.","geometry":{"type":"Polygon","coordinates":[[[736,-1027],[768,-1027],[768,-1046],[736,-1046],[736,-1027]]]}},
+			"27":{"type":"other","text":"69","geometry":{"type":"Polygon","coordinates":[[[773,-1027],[799,-1027],[799,-1046],[773,-1046],[773,-1027]]]}},
+			"28":{"type":"other","text":"ESTABLISHED","geometry":{"type":"Polygon","coordinates":[[[914,-1027],[1061,-1027],[1061,-1045],[914,-1045],[914,-1027]]]}},
+			"29":{"type":"other","text":"1879","geometry":{"type":"Polygon","coordinates":[[[1075,-1027],[1125,-1027],[1125,-1045],[1075,-1045],[1075,-1027]]]}},
+			"21":{"type":"other","text":"14th","geometry":{"type":"Polygon","coordinates":[[[1336,-1022],[1378,-1022],[1378,-1047],[1336,-1047],[1336,-1022]]]}},
+			"22":{"type":"other","text":"DIST.,","geometry":{"type":"Polygon","coordinates":[[[1388,-1022],[1448,-1022],[1448,-1047],[1388,-1047],[1388,-1022]]]}},
+			"23":{"type":"other","text":"CAL.","geometry":{"type":"Polygon","coordinates":[[[1455,-1022],[1502,-1022],[1502,-1047],[1455,-1047],[1455,-1022]]]}},
+			"30":{"type":"other","text":"RUTHERFORD,","geometry":{"type":"Polygon","coordinates":[[[785,-1046],[971,-1046],[971,-1072],[785,-1072],[785,-1046]]]}},
+			"31":{"type":"other","text":"NAPA","geometry":{"type":"Polygon","coordinates":[[[981,-1046],[1043,-1046],[1043,-1072],[981,-1072],[981,-1046]]]}},
+			"32":{"type":"other","text":"COUNTY,","geometry":{"type":"Polygon","coordinates":[[[1057,-1046],[1169,-1046],[1169,-1072],[1057,-1072],[1057,-1046]]]}},
+			"33":{"type":"other","text":"CALIF.","geometry":{"type":"Polygon","coordinates":[[[1179,-1046],[1260,-1046],[1260,-1072],[1179,-1072],[1179,-1046]]]}}},
+		"image": "/images/labels/2048x/0/Amerine-0250.jpg",
+		"imagesave": "/images/labels/before/Amerine-0250.png",
+		"browseImage": "/images/labels/200x/0/Amerine-0250.jpg"
+  },
+  {
 		"wine": "a:i0250",
    "brandName": "Inglenook",
-   "otherDesignation": "Napa Valley Pinot Noir",
+		"otherDesignation": "Napa Valley",
+		"varietal":"Pinot Noir",
+		"winery": {
+			"name":"INGLENOOK VINEYARD CO.",
+			"address":"RUTHERFORD, NAPA COUNTY, CALIF.",
+			"addressQualification":"PRODUCED & BOTTLED"
+		},
+		"vintage": {
+			"year":1943,
+			"alcohol":"ALCOHOL 12% BY VOLUME"
+		},
    "color": "w:Red",
-   "type": "w:Still",
-   "vintage": "_:b6",
-   "year": "1943",
-   "image": "https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0250.jpg",
-   "browseImage": "https://labelthis.lib.ucdavis.edu/images/labels/200x/0/Amerine-0250.jpg"
+		"type": "w:Still",
+		"annotations":{
+			"2":{"type":"vintage.date","text":"1943","geometry":{"type":"Polygon","coordinates":[[[944,-231],[1094,-231],[1094,-299],[944,-299],[944,-231]]]}},
+			"3":{"type":"brandName","text":"INGLENOOK","geometry":{"type":"Polygon","coordinates":[[[618,-336],[1468,-336],[1468,-559],[618,-559],[618,-336]]]}},
+			"5":{"type":"alcohol","text":"ALCOHOL 12% BY VOLUME","geometry":{"type":"Polygon","coordinates":[[[558,-808],[558,-780],[1484,-780],[1484,-808],[558,-808]]]}},
+			"9":{"type":"otherDesignation","text":"NAPA VALLEY","geometry":{"type":"Polygon","coordinates":[[[749,-883],[749,-838],[1287,-838],[1287,-883],[749,-883]]]}},
+			"11":{"type":"varietal","text":"PINOT NOIR","geometry":{"type":"Polygon","coordinates":[[[828,-952],[828,-893],[1215,-893],[1215,-952],[828,-952]]]}},
+			"13":{"type":"addressQualification","text":"PRODUCED & BOTTLED","geometry":{"type":"Polygon","coordinates":[[[850,-993],[850,-968],[1151,-968],[1151,-993],[850,-993]]]}},
+			"16":{"type":"other","text":"BY","geometry":{"type":"Polygon","coordinates":[[[1166,-968],[1195,-968],[1195,-993],[1166,-993],[1166,-968]]]}},
+			"17":{"type":"winery","text":"INGLENOOK VINEYARD CO.","geometry":{"type":"Polygon","coordinates":[[[812,-1024],[812,-992],[1230,-992],[1230,-1024],[812,-1024]]]}},
+			"23":{"type":"other","text":"BONDED WINERY No. 69","geometry":{"type":"Polygon","coordinates":[[[539,-1046],[539,-1027],[799,-1027],[799,-1046],[539,-1046]]]}},
+			"27":{"type":"other","text":"ESTABLISHED 1879","geometry":{"type":"Polygon","coordinates":[[[914,-1045],[914,-1027],[1125,-1027],[1125,-1045],[914,-1045]]]}},
+			"20":{"type":"other","text":"14th DIST., CAL.","geometry":{"type":"Polygon","coordinates":[[[1336,-1047],[1336,-1022],[1502,-1022],[1502,-1047],[1336,-1047]]]}},
+			"29":{"type":"address","text":"RUTHERFORD, NAPA COUNTY, CALIF.","geometry":{"type":"Polygon","coordinates":[[[785,-1072],[785,-1046],[1260,-1046],[1260,-1072],[785,-1072]]]}}},
+		"image": "/images/labels/2048x/0/Amerine-0250.jpg",
+		"imageSave": "/images/labels/after/Amerine-0250.png",
+		"browseImage": "https://labelthis.lib.ucdavis.edu/images/labels/200x/0/Amerine-0250.jpg"
   },
   {
    "wine": "a:i0207",
