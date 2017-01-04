@@ -13,6 +13,10 @@
 
 ### Start the development server
 
+You need the command line polymer tools installed to run the development server
+
+    sudo npm install -g polymer-cli.
+
 This command serves the app at `http://localhost:8080` and provides basic URL
 routing for the app:
 
