@@ -2,11 +2,18 @@
   "entrypoint": "index.html",
   "shell": "src/my-app.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
-  ],
+		"src/shared-styles.html",
+		"src/wine-404.html",
+		"src/wine-app.html",
+		"src/wine-custom.html",
+		"src/wine-home.html",
+		"src/wine-icons.html",
+		"src/wine-labels.html",
+		"src/wine-labels-list.html",
+		"src/wine-login.html",
+		"src/wine-theme.html",
+		"src/wine-ttb.html"
+	],
   "sourceGlobs": [
    "src/**/*",
    "images/**/*",

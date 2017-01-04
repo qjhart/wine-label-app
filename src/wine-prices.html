@@ -1,0 +1,91 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="shared-styles.html">
+
+
+<dom-module id="wine-price-entry" price=[[price]]>
+	<template>
+			<div class="card-contents">
+				<h3>[[price.brandname]]</h3>
+					[[price.brandname]]<br/>
+					[[price.type]]<br/>
+					[[price.color]]<br/>
+					[[price.country]]<br/>
+					[[price.varietal]]<br/>
+					[[price.otherdesignation]]<br/>
+			</div>
+	</template>
+
+		<script>
+		 (function() {
+				 Polymer({
+						 is: 'wine-price-entry',
+						 properties: {
+						 }
+				 });
+		 }());
+	</script>
+
+</dom-module>
+
+<dom-module id="wine-prices">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+				padding: 10px;
+			}
+		</style>
+
+		<iron-ajax
+			 id="getWinePriceData"
+			 auto
+			 url="[[url]]?__offset={{offset}}&__count=[[count]]"
+			 method="get"
+			 handle-as="json"
+			 last-response="{{price}}"></iron-ajax>
+
+		<div class="card">
+			<iron-list items="[[price.data]]" as="price">
+				<template>
+					<wine-price-entry price="[[price]]" ></wine-price-entry>
+				</template>
+			</iron-list>
+			<paper-button class="primary" raised on-tap="getQuote">Get New Wine Prices</paper-button>
+		</div>
+
+	</template>
+
+	<script>
+ (function() {
+		 Polymer({
+				 is: 'wine-prices',
+
+			properties: {
+        url: {
+             type: "text",
+             value: "http://labelthis.qjhart.org/v1/wine_prices",
+             reflectToAttribute: true
+        },
+        count: {
+             type: "integer",
+             value: 35,
+             reflectToAttribute: true
+        },
+        offset: {
+             type: "integer",
+             value: 5,
+             reflectToAttribute: true
+        }
+			},
+
+					getQuote: function() {
+							this.offset=Math.ceil(Math.random()*100);
+//							this.$.getWinePriceData.generateRequest();
+				}
+			});
+		}());
+	</script>
+</dom-module>
