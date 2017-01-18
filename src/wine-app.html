@@ -25,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
@@ -50,8 +51,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <paper-drawer-panel class="flex" force-narrow>
             <paper-header-panel drawer>
-              <div>Username/Login</div>
-              <div>Logout</div>
+              <paper-toolbar class="medium-tall"></paper-toolbar>
+              <paper-item>
+                <paper-item-body two-line>
+                  <div>User Name</div>
+                  <div secondary><a href="foo">Sign out</a></div>
+                </paper-item-body>
+              </paper-item>
             </paper-header-panel>
             <!-- paper-header-panel must have an explicit height -->
             <paper-header-panel main>
