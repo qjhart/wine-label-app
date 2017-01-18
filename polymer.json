@@ -1,10 +1,9 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/wine-app.html",
   "fragments": [
 		"src/shared-styles.html",
 		"src/wine-404.html",
-		"src/wine-app.html",
 		"src/wine-custom.html",
 		"src/wine-home.html",
 		"src/wine-icons.html",

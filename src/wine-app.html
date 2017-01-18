@@ -20,55 +20,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html">
-<link rel="import" href="wine-icons.html">
-<link rel="import" href="wine-theme.html">
+<link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
 
 <dom-module id="wine-app">
 
   <template>
 
     <style>
-      :host {
-        display: block;
-        --app-primary-color: var(--default-primary-color);
-        --app-secondary-color: black;
-        background: linear-gradient(to bottom, #4D0717 0%, #0a0a0a 100%);
-        background-image: linear-gradient(rgb(77, 7, 23) 0%, rgb(10, 10, 10) 100%);
-      }
 
-      app-header {
-        background-color: var(--dark-primary-color);
-        color: #fff;
-      }
-		 app-header a {
-				color: #fff;
-				font-size: 13px;
-			}
-
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
-      }
-
-      .drawer-list {
-        margin: 0 20px;
-      }
-
-      .drawer-list a {
-        display: block;
-        padding: 0 16px;
-        line-height: 40px;
-        text-decoration: none;
-        color: var(--app-secondary-color);
-      }
-
-      .drawer-list a.iron-selected {
-        color: black;
-        font-weight: bold;
-      }
-
-      .drawer-list a.subroute {
-        padding-left: 32px;
-      }
     </style>
 
     <app-location route="{{route}}" use-hash-as-path></app-location>
@@ -77,38 +43,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                data="{{routeData}}"
                tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout fullbleed>
 
 
       <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+      <body class="fullbleed vertical layout">
 
-        <app-header condenses reveals effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <div><a name="home" href="#/home">UC Davis Wine Apps Home</a></div>
-<!--						<a name="login" href="#/login">Log In</a>-->
-          </app-toolbar>
-        </app-header>
-
-        <iron-pages
-            style="height: 100%"
-            role="main"
-            selected="[[page]]"
-            fallback-selection="404"
-            attr-for-selected="name">
-					<wine-login name="login"></wine-login>
-          <wine-home name="home"></wine-home>
-          <wine-labels name="labels"
-											 route="{{subroute}}"></wine-labels>
-          <wine-prices name="prices"></wine-prices>
-          <wine-ttb name="ttb"></wine-ttb>
-          <wine-custom name="custom"></wine-custom>
-        </iron-pages>
-      </app-header-layout>
-    </app-drawer-layout>
+        <paper-drawer-panel class="flex" force-narrow>
+            <paper-header-panel drawer>
+              <div>Username/Login</div>
+              <div>Logout</div>
+            </paper-header-panel>
+            <!-- paper-header-panel must have an explicit height -->
+            <paper-header-panel main>
+              <paper-toolbar class="medium-tall">
+                <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                <span class="flex">UC Davis Wine Apps</span>
+                <paper-tabs class="bottom fit" selected="0">
+                  <paper-tab>Home</paper-tab>
+                  <paper-tab>Label This</paper-tab>
+                  <paper-tab>Head to Head</paper-tab>
+                  <paper-tab>Price Browser</paper-tab>
+                </paper-tabs>
+              </paper-toolbar>
+              <wine-home></wine-home>
+            </paper-header-panel>
+          </paper-drawer-panel>
+      </body>
   </template>
-
   <script>
     Polymer({
       is: 'wine-app',
