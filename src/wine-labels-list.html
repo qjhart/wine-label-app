@@ -9,7 +9,6 @@
 <link rel="import" href="../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
-<link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html">
 
 
 <dom-module id="wine-labels-list">
@@ -144,18 +143,26 @@
     </style>
 
 
+		<iron-ajax
+			 id="getWineLabels"
+			 auto
+			 url="[[url]]?country=USA"
+			 method="get"
+			 handle-as="json"
+			 last-response="{{labels}}"></iron-ajax>
 
 
-      <iron-list items="[[data]]" as="label" grid style="height:100%">
+      <iron-list items="[[labels.data]]" as="label" grid style="height:100%">
         <template>
           <div class="photoContainer">
             <div class="photoContent" tabindex$="[[tabIndex]]">
                 <iron-image sizing="cover"
-                            src="[[label.browseImage]]" alt="[[label.brandName]]">
+                            src="[[url]]/[[label.id]]/thumbnail" alt="[[label.brandname]]">
                 </iron-image>
                 <div class="detail">
-                    [[label.brandName]]<br/>[[label.otherDesignation]]
-                  <a href="#/labels/label/[[label.wine]]"> <iron-icon icon="menu"></iron-icon></a>
+                    [[label.brandname]]<br/>[[label.otherdesignation]]
+                  <a href="[[url]]/[[label.id]]/image" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
+<!--                  <a href="#/labels/label/[[label.wine]]"> <iron-icon icon="menu"></iron-icon></a>-->
                 </div>
             </div>
           </div>
@@ -176,6 +183,11 @@
        is: 'wine-labels-list',
 
        properties: {
+					 url: {
+							 type: "text",
+							 value: "http://localhost:3000/v1/labels",
+							 reflectToAttribute: true
+					 },
           active: {
               type: Boolean,
               value: false,
@@ -197,8 +209,8 @@
        },
 
        ready : function() {
-         if( UCDWineSDK.collections.wines.allLoaded ) this._setData();
-         else UCDWineSDK.events.on('all-wine-data-loaded', this._setData.bind(this));
+//         if( UCDWineSDK.collections.wines.allLoaded ) this._setData();
+//         else UCDWineSDK.events.on('all-wine-data-loaded', this._setData.bind(this));
        },
 
        _setData : function() {
