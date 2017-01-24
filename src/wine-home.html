@@ -10,6 +10,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="wine-home">
 
@@ -20,26 +23,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
+      .intro {
+        text-align: center;
+      }
+      paper-card {
+          max-width: 400px;
+          min-width: 300px;
+          margin: 16px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
     </style>
-
-    <div>
-      <div class="card">
-        <h1><a name="labels" href="#/labels/list">Label This</a></h1>
-        <p>description here. Here's a temporary direct link to the <a name="ttb" href="#/ttb">Example Standard Label</a></p>
-      </div>
-      <div class="card">
-        <h1>Head to Head</h1>
-        <p>description here</p>
-      </div>
-      <div class="card">
-        <h1><a name="prices" href="#/prices">Price Browser</a></h1>
-        <p>description here</p>
-      </div>
+    <div class="intro">
+      <h1>Welcome to the UC Davis Wine Apps Site</h1>
+      <p>Here you will find all of our wine apps, gathered in one palce for easy access. Check out the apps below, or follow the tabs above.</p>
     </div>
-
+    <div class="container">
+      <a name="labels" href="#/labels/list">
+        <paper-card heading="Label This">
+          <div class="card-content">Some content</div>
+          <div class="card-actions">
+            <paper-button>Some action</paper-button>
+          </div>
+        </paper-card>
+      </a>
+      <a name="prices" href="#/prices">
+        <paper-card heading="Price Browser">
+          <div class="card-content">Some content</div>
+          <div class="card-actions">
+            <paper-button>Some action</paper-button>
+          </div>
+        </paper-card>
+      </a>
+      <a name="ttb" href="#/wine-ttb">
+        <paper-card heading="Head to Head">
+          <div class="card-content">Some content</div>
+          <div class="card-actions">
+            <paper-button>Some action</paper-button>
+          </div>
+        </paper-card>
+      </a>
+    </div>
+    <div class="notes">
       <h1>Acknowledgements</h1>
 <!--  <p>Code and demos can be found at the repositories, <a href="https://www.github.com/qjhart/wine-label-app" target="_blank">wine-label-app</a> and <a href="https://www.github.com/qjhart/wine-label" target="_blank">wine-label</a>. -->
       <p>Some images and information were obtained from the Alcohol and Tobacco Tax and Trade Bureau's <a href="https://www.ttb.gov/wine/wine-labeling.shtml">Wine Labeling Regulations</a>.
+    </div>
   </template>
 
   <script>
