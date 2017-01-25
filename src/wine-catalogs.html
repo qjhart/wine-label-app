@@ -1,9 +1,7 @@
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
-<link rel="import" href="../bower_components/wine-label-label/wine-label-label.html">
 
-<link rel="import" href="wine-labels-list.html">
-
+<link rel="import" href="wine-catalogs-list.html">
 
 <dom-module id="wine-labels">
 
@@ -30,6 +28,7 @@
       }
     </style>
 
+    <h1>Catalogs</h1>
     <app-route route="{{route}}"
                pattern="/list"
                active="{{listActive}}"></app-route>
@@ -39,29 +38,28 @@
                active="{{postsActive}}"
                data="{{postsData}}"></app-route>
 
-    <wine-labels-list
+    <wine-catalogs-list
         active={{listActive}}
         api="[[api]]"
-        loading="{{isLoading}}"></wine-labels-list>
+        loading="{{isLoading}}"></wine-catalogs-list>
 
-    <wine-label-label
-        api="[[api]]"
-        wine-label-id="{{postsData.slug}}"
-        active="{{postsActive}}"
-        loading="{{isLoading}}">
-    </wine-label-label>
+    <!-- <wine-catalog-label
+         api="[[api]]"
+         wine-catalog-id="{{postsData.slug}}"
+         active="{{postsActive}}"
+         loading="{{isLoading}}">
+         </wine-catalog-label> -->
 
     <div class="overlay" hidden$="[[!isLoading]]">
       <paper-spinner active="[[isLoading]]"></paper-spinner>
     </div>
-    hi
 
   </template>
 
   <script>
     Polymer({
 
-      is: 'wine-labels',
+      is: 'wine-catalogs',
       properties: {
 				api: {
 					type: "text",

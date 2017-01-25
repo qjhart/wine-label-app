@@ -11,7 +11,7 @@
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 
 
-<dom-module id="wine-labels-list" >
+<dom-module id="wine-catalogs-list" >
 
   <template>
       <style>
@@ -142,27 +142,27 @@
     }
     </style>
 
+    <H1>Catalogs</H1>
 
 		<iron-ajax
-			 id="getWineLabels"
+			 id="getCatalogs"
 			 auto
-			 url="[[api]]/v1/labels?country=USA"
+       url="[[api]]/v1/catalogs"
 			 method="get"
 			 handle-as="json"
-			 last-response="{{labels}}"></iron-ajax>
+			 last-response="{{catalogs}}"></iron-ajax>
 
-
-      <iron-list items="[[labels.data]]" as="label" grid style="height:100%">
+    <H1>Catalogs</H1>
+      <iron-list items="[[catalogs.data]]" as="catalog" grid style="height:100%">
         <template>
           <div class="photoContainer">
             <div class="photoContent" tabindex$="[[tabIndex]]">
                 <iron-image sizing="cover"
-                            src="[[api]]/v1/labels/[[label.id]]/thumbnail" alt="[[label.brandname]]">
+                            src="[[api]]/v1/catalogs/[[catalog.id]]/thumbnail" alt="Catalog Thumbnail Image">
                 </iron-image>
                 <div class="detail">
-                    [[label.brandname]]<br/>[[label.otherdesignation]]
-                  <a href="[[api]]/v1/labels/[[label.id]]/image" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
-<!--                  <a href="#/labels/label/[[label.wine]]"> <iron-icon icon="menu"></iron-icon></a>-->
+                    [[catalog.title]]<br/>[[catalog.year]]<br/>[[catalog.publisher]]
+                  <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
                 </div>
             </div>
           </div>
@@ -170,9 +170,8 @@
       </iron-list>
 
 
-
       <div class="loadingIndicator" hidden$="[[!loading]]">
-        <paper-spinner active$="[[loading]]"></paper-spinner> Fetching wine labels</b>
+        <paper-spinner active$="[[loading]]"></paper-spinner> Fetching wine catalogs</b>
       </div>
 
   </template>
@@ -180,7 +179,7 @@
   <script>
    Polymer({
 
-       is: 'wine-labels-list',
+       is: 'wine-catalogs-list',
 
        properties: {
 					 api: {
@@ -199,23 +198,10 @@
                notify: true
           },
 
-          data: {
-             type : Array,
-             value : function() {
-               return [];
-             }
-          }
        },
 
        ready : function() {
-//         if( UCDWineSDK.collections.wines.allLoaded ) this._setData();
-//         else UCDWineSDK.events.on('all-wine-data-loaded', this._setData.bind(this));
        },
-
-//       _setData : function() {
-//          this.data = UCDWineSDK.collections.wines.data;
-//          this.loading = false;
-//       }
 
     });
   </script>

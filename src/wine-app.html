@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html">
+<!-- <link rel="import" href="../bower_components/wine-label-sdk/wine-label-sdk.html"> -->
 <link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
 <link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
@@ -65,28 +65,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-tab name="home">Home</paper-tab>
                   <!-- <paper-tab link><a href="">Home</a></paper-tab> -->
                   <!-- <paper-tab>Label This</paper-tab> -->
-                  <paper-tab name="labels">Labels</paper-tab>
+                  <paper-tab name="labels"><a href="#/labels/list">Labels</a></paper-tab>
+                  <paper-tab name="catalogs"><a href="#/catalogs/list">Catalogs</a></paper-tab>
                   <!-- <paper-tab>Head to Head</paper-tab> -->
                   <paper-tab name="prices">Price Browser</paper-tab>
                   <paper-tab name="ttb">Label Information</paper-tab> -->
                 </paper-tabs>
               </paper-toolbar>
-              <iron-pages
-                  style="height: 100%"
-                  role="main"
-                  selected="[[page]]"
-                  fallback-selection="404"
-                  attr-for-selected="name">
-                <wine-login name="login"></wine-login>
-                <wine-home name="home"></wine-home>
-                <!-- <wine-labels name="labels"
-                     route="list"></wine-labels> -->
-                <wine-labels name="labels"
-                     route="{{subroute}}"></wine-labels>
-                <wine-prices name="prices"></wine-prices>
-                <wine-ttb name="ttb"></wine-ttb>
-                <wine-custom name="custom"></wine-custom>
-              </iron-pages>
+              <wine-catalogs api=[[api]] name="catalogs"
+                             route="{{subroute}}"></wine-catalogs>
+
+              <!-- <iron-pages
+                   style="height: 100%"
+                   role="main"
+                   selected="[[page]]"
+                   fallback-selection="404"
+                   attr-for-selected="name">
+                   <wine-login name="login"></wine-login>
+                   <wine-home name="home"></wine-home>
+              <wine-labels api=[[api]] name="labels"
+                           route="{{subroute}}"></wine-labels>
+              <wine-catalogs api=[[api]] name="catalogs"
+                             route="{{subroute}}"></wine-catalogs>
+              <wine-prices name="prices"></wine-prices>
+              <wine-ttb name="ttb"></wine-ttb>
+              <wine-custom name="custom"></wine-custom>
+              </iron-pages> -->
             </paper-header-panel>
         </paper-drawer-panel>
 
@@ -94,13 +98,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
   <script>
     Polymer({
-      is: 'wine-app',
+			is: 'wine-app',
       properties: {
         page: {
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+				api: {
+					type: "text",
+					value: "http://localhost:3000",
+//					value: "http://api.labels.qjhart.org",
+					reflectToAttribute: true
+				},
+
       },
 
       observers: [
@@ -108,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       ready : function() {
-        UCDWineSDK.collections.wines.load();
+//        UCDWineSDK.collections.wines.load();
       },
 
       _routePageChanged: function(page) {
