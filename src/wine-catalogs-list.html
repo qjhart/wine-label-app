@@ -142,8 +142,6 @@
     }
     </style>
 
-    <H1>Catalogs</H1>
-
 		<iron-ajax
 			 id="getCatalogs"
 			 auto
@@ -152,7 +150,6 @@
 			 handle-as="json"
 			 last-response="{{catalogs}}"></iron-ajax>
 
-    <H1>Catalogs</H1>
       <iron-list items="[[catalogs.data]]" as="catalog" grid style="height:100%">
         <template>
           <div class="photoContainer">
@@ -161,7 +158,7 @@
                             src="[[api]]/v1/catalogs/[[catalog.id]]/thumbnail" alt="Catalog Thumbnail Image">
                 </iron-image>
                 <div class="detail">
-                    [[catalog.title]]<br/>[[catalog.year]]<br/>[[catalog.publisher]]
+                    [[catalog.title]]
                   <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
                 </div>
             </div>

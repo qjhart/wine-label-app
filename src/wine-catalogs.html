@@ -3,7 +3,7 @@
 
 <link rel="import" href="wine-catalogs-list.html">
 
-<dom-module id="wine-labels">
+<dom-module id="wine-catalogs">
 
   <template>
 
@@ -28,13 +28,12 @@
       }
     </style>
 
-    <h1>Catalogs</h1>
     <app-route route="{{route}}"
                pattern="/list"
                active="{{listActive}}"></app-route>
 
     <app-route route="{{route}}"
-               pattern="/label/:slug"
+               pattern="/catalog/:slug"
                active="{{postsActive}}"
                data="{{postsData}}"></app-route>
 

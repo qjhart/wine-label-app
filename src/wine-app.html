@@ -29,6 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
+<link rel="import" href="wine-catalogs-list.html">
 
 <dom-module id="wine-app">
 
@@ -39,6 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <app-location route="{{route}}" use-hash-as-path></app-location>
+    <!-- <app-location route="{{route}}"></app-location> -->
     <app-route route="{{route}}"
                pattern="/:page"
                data="{{routeData}}"
@@ -62,35 +64,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
                 <span class="flex">UC Davis Wine Apps</span>
                 <paper-tabs class="bottom fit" selected="{{page}}" attr-for-selected="name">
-                  <paper-tab name="home">Home</paper-tab>
-                  <!-- <paper-tab link><a href="">Home</a></paper-tab> -->
-                  <!-- <paper-tab>Label This</paper-tab> -->
+                  <paper-tab name="home"><a href="#/home">Home</a></paper-tab>
                   <paper-tab name="labels"><a href="#/labels/list">Labels</a></paper-tab>
                   <paper-tab name="catalogs"><a href="#/catalogs/list">Catalogs</a></paper-tab>
                   <!-- <paper-tab>Head to Head</paper-tab> -->
-                  <paper-tab name="prices">Price Browser</paper-tab>
-                  <paper-tab name="ttb">Label Information</paper-tab> -->
+                  <paper-tab name="prices"><a href="#/prices">Price Browser</a></paper-tab>
+                  <paper-tab name="ttb"><a href="#/ttb">Label Information</a></paper-tab> -->
                 </paper-tabs>
               </paper-toolbar>
-              <wine-catalogs api=[[api]] name="catalogs"
-                             route="{{subroute}}"></wine-catalogs>
 
-              <!-- <iron-pages
-                   style="height: 100%"
-                   role="main"
-                   selected="[[page]]"
-                   fallback-selection="404"
-                   attr-for-selected="name">
-                   <wine-login name="login"></wine-login>
-                   <wine-home name="home"></wine-home>
-              <wine-labels api=[[api]] name="labels"
-                           route="{{subroute}}"></wine-labels>
-              <wine-catalogs api=[[api]] name="catalogs"
-                             route="{{subroute}}"></wine-catalogs>
-              <wine-prices name="prices"></wine-prices>
-              <wine-ttb name="ttb"></wine-ttb>
-              <wine-custom name="custom"></wine-custom>
-              </iron-pages> -->
+              <iron-pages
+                  style="height: 100%"
+                  role="main"
+                  selected="[[page]]"
+                  fallback-selection="404"
+                  attr-for-selected="name">
+                <wine-login name="login"></wine-login>
+                <wine-home name="home"></wine-home>
+                <wine-labels api=[[api]] name="labels"
+                             route="{{subroute}}"></wine-labels>
+                <wine-catalogs api=[[api]] name="catalogs"
+                               route="{{subroute}}"></wine-catalogs>
+                <wine-prices name="prices"></wine-prices>
+                <wine-ttb name="ttb"></wine-ttb>
+                <wine-custom name="custom"></wine-custom>
+              </iron-pages>
             </paper-header-panel>
         </paper-drawer-panel>
 
