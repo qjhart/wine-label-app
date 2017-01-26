@@ -36,6 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
 
     <style>
+    .paper-tab-links a {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 1em;
+    }
 
     </style>
 
@@ -63,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-toolbar class="medium-tall">
                 <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
                 <span class="flex">UC Davis Wine Apps</span>
-                <paper-tabs class="bottom fit" selected="{{page}}" attr-for-selected="name">
+                <paper-tabs class="bottom fit paper-tab-links" selected="{{page}}" attr-for-selected="name">
                   <paper-tab name="home"><a href="#/home">Home</a></paper-tab>
                   <paper-tab name="labels"><a href="#/labels/list">Labels</a></paper-tab>
                   <paper-tab name="catalogs"><a href="#/catalogs/list">Catalogs</a></paper-tab>
