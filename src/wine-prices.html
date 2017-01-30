@@ -3,6 +3,14 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../../../iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../../../paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../paper-item/paper-item.html">
+<link rel="import" href="../../../paper-menu/paper-menu.html">
+<link rel="import" href="../../../paper-toolbar/paper-toolbar.html">
 
 
 <dom-module id="wine-price-entry" price=[[price]]>
@@ -33,10 +41,56 @@
 <dom-module id="wine-prices">
 	<template>
 		<style include="shared-styles">
-			:host {
-				display: block;
-				padding: 10px;
+		:host {
+			display: block;
 			}
+
+			.nav {
+			border-right: 1px solid #ccc;
+			}
+
+			.list-panel {
+			background-color: #fafafa;
+			}
+
+			.list-panel {
+			--paper-header-panel-standard-container: {
+				border-right: 1px solid #ccc;
+			};
+			}
+
+			paper-toolbar {
+			background-color:white;
+			box-shadow: none;
+			}
+
+			.list {
+			padding: 0;
+			}
+
+			.list paper-item {
+			height: 80px;
+			border-bottom: 1px solid #dedede;
+			background-color: #fafafa;
+			}
+
+			.main-drawer-panel:not([narrow]) [list-toggle] {
+			display: none;
+			}
+
+			.content {
+			height: 3000px;
+			}
+
+			.container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      }
+
+			paper-card {
+      margin: 16px;
+      }
 		</style>
 
 		<iron-ajax
@@ -47,16 +101,45 @@
 			 handle-as="json"
 			 last-response="{{price}}"></iron-ajax>
 
-		<div class="card">
-			hi
+			 <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px"
+	 				drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle"
+	 				narrow="{{_isMobile}}">
 
-			<iron-list items="[[price.data]]" as="price">
-				<template>
-					<wine-price-entry price="[[price]]" ></wine-price-entry>
-				</template>
-			</iron-list>
-			<paper-button class="primary" raised on-tap="getQuote">Get New Wine Prices</paper-button>
-		</div>
+	 			<paper-header-panel class="list-panel" drawer>
+
+	 				<!-- List Toolbar -->
+	 				<paper-toolbar>
+	 					<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+						<h1>Refine your search</h1>
+	 				</paper-toolbar>
+
+	 				<!-- List -->
+	 				<paper-menu class="list" on-iron-activate="_listTap">
+	 					Search facets go here
+	 				</paper-menu>
+
+	 			</paper-header-panel>
+
+	 			<paper-header-panel class="content-panel" main>
+
+	 				<!-- Main Toolbar -->
+	 				<paper-toolbar>
+	 					<paper-icon-button icon="arrow-back" list-toggle></paper-icon-button>
+						<h1>Results</h1>
+	 				</paper-toolbar>
+
+	 				<!-- Main Content -->
+	 				<div class="content container">
+						<paper-card heading="1945 Chateauneuf du Pape">
+		          <div class="card-content">Catalogue price card</div>
+		          <div class="card-actions">
+		          </div>
+		        </paper-card>
+					</div>
+
+	 			</paper-header-panel>
+
+	 		</paper-drawer-panel>
 
 	</template>
 
