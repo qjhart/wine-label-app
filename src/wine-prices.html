@@ -119,15 +119,23 @@
 	 				<!-- List -->
 	 				<paper-menu class="list" on-iron-activate="_listTap">
 						<h3>Region</h3>
-						<paper-textarea-tags tags="[[ tagsDefault ]]"></paper-textarea-tags>
+						<tag-item value="French"></tag-item>
+						<tag-item value="American"></tag-item>
+						<tag-item value="Rhone"></tag-item>
+						<tag-item value="Moselle"></tag-item>
+						<tag-item value="Italian"></tag-item>
 						<h3>Type</h3>
-						<paper-textarea-tags tags="[[ tagsDefault ]]"></paper-textarea-tags>
+						<tag-item value="Red"></tag-item>
+						<tag-item value="White"></tag-item>
+						<tag-item value="Vouvray-Anjou-Saumur"></tag-item>
 						<h3>Vintage</h3>
 						<paper-slider value="50"></paper-slider>
 						<h3>Year Sold</h3>
 						<paper-slider value="50"></paper-slider>
 						<h3>Size</h3>
-						<paper-textarea-tags tags="[[ tagsDefault ]]"></paper-textarea-tags>
+						<tag-item value="Bottle"></tag-item>
+						<tag-item value="Case"></tag-item>
+						<tag-item value="Magnum"></tag-item>
 	 				</paper-menu>
 
 	 			</paper-header-panel>
@@ -156,7 +164,7 @@
 	</template>
 
 	<script>
- (function() {
+	(function() {
 		 Polymer({
 				 is: 'wine-prices',
 
