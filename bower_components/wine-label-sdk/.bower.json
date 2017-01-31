@@ -1,0 +1,13 @@
+{
+  "name": "wine-label-sdk",
+  "homepage": "https://github.com/qjhart/wine-label-sdk",
+  "_release": "65665fd9f3",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "65665fd9f316de7e4e0551889bebcf0b41ac42a8"
+  },
+  "_source": "https://github.com/qjhart/wine-label-sdk.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/qjhart/wine-label-sdk.git"
+}

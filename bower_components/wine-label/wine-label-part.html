@@ -1,0 +1,76 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`wine-label-part` is an element to describe one portion of a wine label.  The `wine-label-part` includes
+the label part, as the `part` property, as well as a description of this part.  In addition, the element 
+describes where on the image this label is with the `ul` and `size` parameters.  If the `ul` parameters does
+not exist, the then `wine-label-part` is shown whenever no other part is selected.   Regions can overlap, in which case multiple `wine-label-part`s are displayed.
+
+An example of a `wine-label-part` is shown below:
+
+      <wine-label-part overview part="Overview" > 
+        <p>Time to learn about wine labels!</p>
+      </wine-label-part>
+
+This example includes a bounding box on the area to highlight on the image.
+
+      <wine-label-part brand part="Brand Name" ul="20,20" size="100,20" > 
+        <p>Brand Names tell us who made the wine.</p>
+      </wine-label-part>
+
+### Styling
+
+`<wine-label-part>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--wine-label-part-radius` | Text box radius | `5px`
+`--wine-label-part-background` | Text box background | `#fff`
+`--wine-label-part-headline-font-size` | Headline font | `22px`
+`--wine-label-part-headline-margin` | Headline margin | `16px 0`
+`--wine-label-part-headline-color` | Headline text color | `#212121`
+
+@element wine-label-part
+@demo demo/label-part.html 
+-->
+
+<dom-module id="wine-label-part">
+  <style>
+    .card {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      margin: 24px;
+      border-radius: var(--wine-label-part-radius,5px);
+      background-color: var(--wine-label-part-background,#fff);
+      color: #757575;
+    }
+    h1 {
+      font-size: var(--wine-label-part-headline-font-size,22px);
+      margin: var(--wine-label-part-headline-margin,16px 0);
+      color: var(--wine-label-part-headline-color,#212121);
+    }
+  </style>
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <div class="card">
+      <h1>[[part]]</h1>
+      <content></content>
+    </div>
+  </template>
+
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+    is: 'wine-label-part',
+    properties: {
+      part: {
+	      type: String,
+	      value: "Overview",
+	      reflectToAttribute: true	
+	    },
+    }
+  });
+  </script>
+
+</dom-module>

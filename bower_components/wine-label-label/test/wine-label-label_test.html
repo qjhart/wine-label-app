@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>wine-label-label test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../wine-label-label.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <wine-label-label></wine-label-label>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('wine-label-label', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'wine-label-label');
+        });
+      });
+    </script>
+  </body>
+</html>
