@@ -9,12 +9,15 @@
 <link rel="import" href="../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-icons/image-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="shared-styles.html">
 
 
 <dom-module id="wine-catalogs-list" >
 
   <template>
-      <style>
+      <style include="shared-styles">
 
         :host {
           display: block;
@@ -31,37 +34,6 @@
           color: white;
         }
 
-        .photoContent {
-          @apply(--layout);
-          background-color: #ddd;
-          position: relative;
-          width: 300px;
-          height: 300px;
-          margin: 8px;
-        }
-
-        .photoContent:hover .detail{
-          opacity: 1;
-        }
-
-        .photoContent > iron-image {
-          @apply(--layout-flex);
-        }
-
-        .photoContent > .detail {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-          color: white;
-          font-size: 20px;
-          font-weight: 100;
-          padding: 20px;
-          opacity: 0;
-          transition: opacity 0.1s;
-        }
-
         .loadingIndicator {
           font-size: 16px;
           text-align: center;
@@ -71,26 +43,6 @@
         .loadingIndicator paper-spinner {
           margin-right: 20px;
           vertical-align: middle;
-        }
-
-        @media (max-width: 800px) {
-          .photoContainer {
-            width: calc(50% - 16px);
-          }
-
-          .photoContent {
-            width: auto;
-          }
-        }
-
-        @media (max-width: 400px) {
-          .photoContainer {
-            width: 100%;
-          }
-
-          .photoContent > .detail {
-            opacity: 1;
-          }
         }
 
         ::-webkit-input-placeholder {
@@ -125,17 +77,6 @@
         display: block;
       }
 
-      .post {
-        position: relative;
-        margin-bottom: 160px;
-      }
-
-      .post a {
-        display: block;
-        text-decoration: none;
-        color: #212121;
-      }
-
       p {
         line-height: 33.18px;
       }
@@ -152,14 +93,14 @@
 
       <iron-list items="[[catalogs.data]]" as="catalog" grid style="height:100%">
         <template>
-          <div class="photoContainer">
-            <div class="photoContent" tabindex$="[[tabIndex]]">
+          <div class="pagesContainer">
+            <div class="pages" tabindex$="[[tabIndex]]">
                 <iron-image sizing="cover"
                             src="[[api]]/v1/catalogs/[[catalog.id]]/thumbnail" alt="Catalog Thumbnail Image">
                 </iron-image>
                 <div class="detail">
-                    [[catalog.title]]
-                  <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
+                  <a href="/#/catalogs/catalog/[[catalog.id]]"><iron-icon icon="people"></iron-icon></a>
+                  <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"><iron-icon icon="picture-as-pdf"></iron-icon></a>
                 </div>
             </div>
           </div>

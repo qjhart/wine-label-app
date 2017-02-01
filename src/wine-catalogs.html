@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 
 <link rel="import" href="wine-catalogs-list.html">
+<link rel="import" href="wine-pages-list.html">
 
 <dom-module id="wine-catalogs">
 
@@ -33,21 +34,21 @@
                active="{{listActive}}"></app-route>
 
     <app-route route="{{route}}"
-               pattern="/catalog/:slug"
-               active="{{postsActive}}"
-               data="{{postsData}}"></app-route>
+               pattern="/catalog/:catalog_id"
+               active="{{catalogActive}}"
+               data="{{catalogData}}"></app-route>
 
     <wine-catalogs-list
         active={{listActive}}
         api="[[api]]"
         loading="{{isLoading}}"></wine-catalogs-list>
 
-    <!-- <wine-catalog-label
+    <wine-pages-list
          api="[[api]]"
-         wine-catalog-id="{{postsData.slug}}"
-         active="{{postsActive}}"
+         catalog_id="{{catalogData.catalog_id}}"
+         active="{{catalogActive}}"
          loading="{{isLoading}}">
-         </wine-catalog-label> -->
+         </wine-pages-list>
 
     <div class="overlay" hidden$="[[!isLoading]]">
       <paper-spinner active="[[isLoading]]"></paper-spinner>
