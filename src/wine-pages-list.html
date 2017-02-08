@@ -9,17 +9,22 @@
 <link rel="import" href="../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="wine-icons.html">
 
 
 <dom-module id="wine-pages-list" >
 
   <template>
-      <style include="shared-styles">
+    <style include="shared-styles">
 
-        :host {
-          display: block;
-          @apply(--paper-font-common-base);
-        }
+      :host {
+        display: none;
+      }
+
+      :host([active]) {
+        display: block;
+        @apply(--paper-font-common-base);
+      }
 
         app-header {
           position: fixed;
@@ -103,16 +108,11 @@
         <template>
           <div class="pagesContainer">
             <div class="pages" tabindex$="[[tabIndex]]">
-              <!-- <a href="[[api]]/v1/pages/[[page.id]]/image" target="_blank">
-                   <iron-image sizing="cover"
-                   src="[[api]]/v1/pages/[[pages.id]]/thumbnail" alt="Catalog Thumbnail Image">
-                   </iron-image>
-                   </a> -->
               <iron-image sizing="cover"
                           src="[[api]]/v1/pages/[[page.id]]/thumbnail" alt="Catalog Thumbnail Image">
               </iron-image>
                 <div class="detail">
-                  <a href="[[api]]/v1/pages/[[page.id]]/image" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
+                  <a href="/#/catalogs/page/[[page.id]]" target="_blank"> <iron-icon icon="wine:people"></iron-icon></a>
                 </div>
             </div>
           </div>

@@ -3,6 +3,7 @@
 
 <link rel="import" href="wine-catalogs-list.html">
 <link rel="import" href="wine-pages-list.html">
+<link rel="import" href="wine-page-markup.html">
 
 <dom-module id="wine-catalogs">
 
@@ -31,28 +32,40 @@
 
     <app-route route="{{route}}"
                pattern="/list"
-               active="{{listActive}}"></app-route>
+               active="{{listActive}}"
+               tail="{{catalogRoute}}">
+
+    </app-route>
 
     <app-route route="{{route}}"
                pattern="/catalog/:catalog_id"
                active="{{catalogActive}}"
+               tail="{{pageRoute}}"
                data="{{catalogData}}"></app-route>
 
+    <app-route route="{{route}}"
+               pattern="/page/:page_id"
+               active="{{pageActive}}"
+               data="{{pageData}}"></app-route>
+
     <wine-catalogs-list
-        active={{listActive}}
-        api="[[api]]"
-        loading="{{isLoading}}"></wine-catalogs-list>
+        active="{{listActive}}"
+        api="[[api]]">
+    </wine-catalogs-list>
 
     <wine-pages-list
-         api="[[api]]"
-         catalog_id="{{catalogData.catalog_id}}"
-         active="{{catalogActive}}"
-         loading="{{isLoading}}">
-         </wine-pages-list>
+        api="[[api]]"
+        catalog_id="{{catalogData.catalog_id}}"
+        active="{{catalogActive}}"
+    >
+    </wine-pages-list>
 
-    <div class="overlay" hidden$="[[!isLoading]]">
-      <paper-spinner active="[[isLoading]]"></paper-spinner>
-    </div>
+    <wine-page-markup
+        api="[[api]]"
+        page_id="{{pageData.page_id}}"
+        active="{{pageActive}}"
+    >
+    </wine-page-markup>
 
   </template>
 
@@ -65,18 +78,6 @@
 					type: "text",
 					reflectToAttribute: true
 				},
-      },
-
-      observers: [
-        '_lockScroll(isLoading)'
-      ],
-
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
       }
 
     });

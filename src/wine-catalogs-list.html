@@ -9,8 +9,6 @@
 <link rel="import" href="../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
-<link rel="import" href="../bower_components/iron-icons/image-icons.html">
-<link rel="import" href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="wine-icons.html">
 
@@ -21,9 +19,14 @@
       <style include="shared-styles">
 
         :host {
+          display: none;
+        }
+
+        :host([active]) {
           display: block;
           @apply(--paper-font-common-base);
         }
+
 
         app-header {
           position: fixed;
@@ -64,54 +67,56 @@
 
       </style>
 
-    <style>
-      :host {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom:0;
-      }
+      <style>
+        :host {
+          display: none;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom:0;
+        }
 
-      :host([active]) {
-        display: block;
-      }
+        :host([active]) {
+          display: block;
+        }
 
-      p {
-        line-height: 33.18px;
-      }
-    }
-    </style>
+        p {
+          line-height: 33.18px;
+        }
+        }
+      </style>
 
-		<iron-ajax
-			 id="getCatalogs"
-			 auto
-       url="[[api]]/v1/catalogs"
-			 method="get"
-			 handle-as="json"
-			 last-response="{{catalogs}}"></iron-ajax>
+		  <iron-ajax
+			    id="getCatalogs"
+			    auto
+          url="[[api]]/v1/catalogs"
+			    method="get"
+			    handle-as="json"
+          loading="{{loading}}"
+			    last-response="{{catalogs}}">
+
+      </iron-ajax>
 
       <iron-list items="[[catalogs.data]]" as="catalog" grid style="height:100%">
         <template>
           <div class="pagesContainer">
             <div class="pages" tabindex$="[[tabIndex]]">
-                <iron-image sizing="cover"
-                            src="[[api]]/v1/catalogs/[[catalog.id]]/thumbnail" alt="Catalog Thumbnail Image">
-                </iron-image>
-                <div class="detail">
-                  <a href="/#/catalogs/catalog/[[catalog.id]]"><iron-icon icon="people"></iron-icon></a>
-                  <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"><iron-icon icon="picture-as-pdf"></iron-icon></a>
-                </div>
+              <iron-image sizing="cover"
+                          src="[[api]]/v1/catalogs/[[catalog.id]]/thumbnail" alt="Catalog Thumbnail Image">
+              </iron-image>
+              <div class="detail">
+                <a href="/#/catalogs/catalog/[[catalog.id]]"><iron-icon icon="wine:people"></iron-icon></a>
+                <a href="[[api]]/v1/catalogs/[[catalog.id]]/file" target="_blank"><iron-icon icon="wine:picture-as-pdf"></iron-icon></a>
+              </div>
             </div>
           </div>
         </template>
       </iron-list>
 
-
-      <div class="loadingIndicator" hidden$="[[!loading]]">
-        <paper-spinner active$="[[loading]]"></paper-spinner> Fetching wine catalogs</b>
-      </div>
+      <!-- <div class="loadingIndicator" hidden$="[[!loading]]">
+           <paper-spinner active$="[[loading]]"></paper-spinner> Fetching wine catalogs</b>
+           </div> -->
 
   </template>
 
@@ -139,8 +144,19 @@
 
        },
 
-       ready : function() {
-       },
+      observers: [
+//        '_lockScroll(loading)'
+      ],
+
+      _lockScroll: function(isLoading) {
+        console.log('lockscroll: '+isLoading);
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      }
+
 
     });
   </script>
