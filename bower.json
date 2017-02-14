@@ -24,8 +24,6 @@
     "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.4",
     "polymer": "Polymer/polymer#^1.6.0",
     "wine-label": "https://github.com/qjhart/wine-label.git#^0.1.2",
-    "wine-label-label": "https://github.com/qjhart/wine-label-label.git",
-    "wine-label-sdk": "https://github.com/qjhart/wine-label-sdk.git",
     "paper-card": "PolymerElements/paper-card#^1.1.4",
     "paper-header-panel": "PolymerElements/paper-header-panel#^1.1.7",
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.7",

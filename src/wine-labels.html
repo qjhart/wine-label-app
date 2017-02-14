@@ -1,6 +1,6 @@
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
-<link rel="import" href="../bower_components/wine-label-label/wine-label-label.html">
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+<!-- <link rel="import" href="/bower_components/wine-label-label/wine-label-label.html">-->
 
 <link rel="import" href="wine-labels-list.html">
 
@@ -44,12 +44,12 @@
         api="[[api]]"
         loading="{{isLoading}}"></wine-labels-list>
 
-    <wine-label-label
-        api="[[api]]"
-        wine-label-id="{{postsData.slug}}"
-        active="{{postsActive}}"
-        loading="{{isLoading}}">
-    </wine-label-label>
+    <!-- <wine-label-label
+         api="[[api]]"
+         wine-label-id="{{postsData.slug}}"
+         active="{{postsActive}}"
+         loading="{{isLoading}}">
+         </wine-label-label> -->
 
     <div class="overlay" hidden$="[[!isLoading]]">
       <paper-spinner active="[[isLoading]]"></paper-spinner>

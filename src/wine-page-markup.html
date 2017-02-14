@@ -1,10 +1,10 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
-
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/iron-form/iron-form.html">
 
 <!-- Leaflet for image drawing -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
@@ -18,14 +18,22 @@
      demo demo/index.html
    -->
 
-<link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
-<link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
+<link rel="import" href="/bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="/bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
 
 
 <dom-module id="wine-price-item">
 	<template>
 
-    <style include="paper-dialog-shared-styles"></style>
+    <style include="paper-dialog-shared-styles">
+      :host {
+        padding: 15px;
+      }
+      paper-input[type^=number] {
+        width: 100px;
+      }
+
+    </style>
 
     <paper-dialog-scrollable>
 
@@ -48,6 +56,9 @@
 							<paper-item value="Fortified">Fortified</paper-item>
 						</paper-listbox>
 					</paper-dropdown-menu>
+      </div>
+
+      <div class="container flex-horizontal">
 
           <paper-dropdown-menu label="Bottle Size">
 					  <paper-listbox class="dropdown-content" attr-for-selected="value" selected="Standard">
@@ -93,11 +104,22 @@
 					  </paper-listbox>
 				  </paper-dropdown-menu>
 
-          <paper-input label="brandName" value="" maxlength=1056></paper-input>
-          <paper-input label="varietal" value="" maxlength=1056></paper-input>
-          <paper-input label="otherDesignation" value="" maxlength=1056></paper-input>
-          <paper-input label="page_id" value="[[page_id]]"></paper-input>
-          <paper-input label="row_col" value="[[row_col.lng]],[[row_col.lat]]"></paper-input>
+          <paper-input label="Bottle Price" value="" type="number" min="0" step="0.01" size="10">
+            <div prefix>$</div>
+          </paper-input>
+          <paper-input label="Case Price" value="" type="number" min="0" step="0.01">
+            <div prefix>$</div>
+          </paper-input>
+
+      </div>
+      <paper-input label="brandName" value="" type="string" ></paper-input>
+      <paper-input label="varietal" value="" type="string"></paper-input>
+      <paper-input label="otherDesignation" value="" type="string"></paper-input>
+      <paper-input label="vintage (year)" value="" type="number" ></paper-input>
+      <paper-input label="price year" value="" type="number" ></paper-input>
+
+          <!-- <paper-input label="page_id" value="[[page_id]]"></paper-input> -->
+          <!-- <paper-input label="row_col" value="[[row_col.lng]],[[row_col.lat]]"></paper-input> -->
 
 
       <div class="buttons">
@@ -187,6 +209,7 @@
         left: 0px;
         width: 100%;
         overflow: auto;
+        z-index : 1003;
       }
     </style>
 
@@ -250,8 +273,8 @@
             page.redraw();
           }
 
-          img.src=`${this.api}/v1/pages/${this.page_id}/image`;
-          console.log(`url: ${img.src}`);
+          img.src=this.api+'/v1/pages/'+this.page_id+'/image';
+          //console.log('url: '+img.src);
         }
       },
 
@@ -275,14 +298,11 @@
         // Need to get bounds from image.
 				var bounds = this.bounds;
         console.log(JSON.stringify(bounds));
-				var image = L.imageOverlay(`${this.api}/v1/pages/${this.page_id}/image`, bounds).addTo(map);
+				var image = L.imageOverlay(this.api+'/v1/pages/'+this.page_id+'/image', bounds).addTo(map);
 				map.fitBounds(bounds);
 
         var marks = new L.FeatureGroup();
-        L.marker([300,400]).addTo(marks);
         map.addLayer(marks);
-
-        L.marker([300,500]).addTo(map);
 
         var markup=this.$.price_item;
         var page_id=this.page_id;
@@ -316,7 +336,7 @@
 
 
           if (type === 'marker') {
-            layer.bindPopup(`latlng: ${layer._latlng}`);
+            layer.bindPopup('latlng: '+layer._latlng);
           }
 
           markup.row_col=layer._latlng;
@@ -329,7 +349,7 @@
 			},
 
 			 // edit an existing annotation
-			 edit : function (key,edits={}) {
+			 edit : function (key,edits) {
 					 var fields=['type','text','geometry'];
 
 					 // We should really limit to these types
@@ -350,14 +370,18 @@
 					 var rc_path='data.row.'+rc[0]+'.'+rc[1];
 
 				 if (edits.type) {
-							 types.forEach((t)=>{ if (t==edits.type) { type_is_good=true;}});
+					 types.forEach(
+             //(t)=>{ if (t==edits.type) { type_is_good=true;}}
+             function(t) {if (t==edits.type) { type_is_good=true;}}
+           );
 					 }
-					 fields.forEach((f)=>{
+				 fields.forEach(//(f)=>{
+                        (function(f) {
 							 if (edits[f]) {
 									 item[f]=edits[f];
 									 this.set(rc.path+'.'+f,item[f]);
 							 }
-					 });
+					 }).bind(this));
 					 if (edits.key) {
 							 delete this.data.annotations[key];
 							 this.data.annotations[edits.key]=item;
@@ -365,12 +389,14 @@
 					 this.add_history('edit',key,edits);
 			 },
 			 // drop a notation from consideration
-			 drop : function(keys,parms={history:true}) {
+			drop : function(keys,parms) {
+        //parms={history:true}
 					 if (typeof keys !== "object") {
 							 keys=[keys];
 					 }
 					 var i,a;
-					 keys.forEach((key)=>{
+				 keys.forEach(//(key)=>{
+                      function(key) {
 							 delete this.data.annotations[key];
 					 });
 					 if (parms.history) {
