@@ -30,6 +30,12 @@
       }
     </style>
 
+    <section class="intro">
+      <h1>Label This</h1>
+      <p>Wine labels provide a meaningful window into the history of winemaking, winemakers and into the changing tastes and trends. Our goal is to make these labels, and this history, searchable and accessible to wine lovers everywhere.</p>
+      <p>Due to handwritten lettering, idiosyncratic typography and layouts, we need help transcribing and describing the labels to create that searchable database. That’s where you come in! Help us uncork a piece of history.</p>
+    </section>
+
     <app-route route="{{route}}"
                pattern="/list"
                active="{{listActive}}"></app-route>
@@ -38,11 +44,11 @@
                pattern="/label/:slug"
                active="{{postsActive}}"
                data="{{postsData}}"></app-route>
-
     <wine-labels-list
         active={{listActive}}
         api="[[api]]"
-        loading="{{isLoading}}"></wine-labels-list>
+        loading="{{isLoading}}">
+    </wine-labels-list>
 
     <!-- <wine-label-label
          api="[[api]]"
@@ -54,8 +60,6 @@
     <div class="overlay" hidden$="[[!isLoading]]">
       <paper-spinner active="[[isLoading]]"></paper-spinner>
     </div>
-
-    <h1>Label This</h1>
 
   </template>
 

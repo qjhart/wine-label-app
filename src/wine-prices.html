@@ -81,19 +81,60 @@
 			display: none;
 			}
 
-			.content {
-			height: 3000px;
-			}
-
 			.container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+			max-width: 550px;
+			min-width: 300px;
+			margin: 0 auto;
       }
 
 			paper-card {
       margin: 16px;
+			padding: 16px;
+			width: 100%;
       }
+
+			.card-main-info, .card-source-price-info {
+				display: flex;
+				flex-direction: row;
+			}
+
+			.card-source-price-info {
+				align-items: flex-end;
+				justify-content: space-between;
+			}
+
+			.card-metadata {
+				flex-grow: 5;
+			}
+
+			.card-metadata h1 {
+				margin: 0 0 16px;
+				line-height: 24px;
+			}
+
+			.card-price h2 {
+				margin:0 0 0 16px;
+			}
+			.card-action {
+				flex-grow: 1;
+				text-align: right;
+			}
+			.card-source-price-info small {
+				flex-grow: 4;
+			}
+			.card-price {
+				text-align: right;
+				line-height: 24px;
+				flex-grow: 1;
+			}
+
+			.card-supplementary-info {
+				display: none;
+			}
+
 		</style>
 
 		<iron-ajax
@@ -150,10 +191,31 @@
 
 	 				<!-- Main Content -->
 	 				<div class="content container">
-						<paper-card heading="1945 Chateauneuf du Pape">
-		          <div class="card-content">Catalogue price card</div>
-		          <div class="card-actions">
-		          </div>
+						<paper-card>
+							<section class="card-main-info">
+								<div class="card-metadata">
+									<span id="type">Red</span> <span id="region">Rhone</span>
+									<h1><span id="vintage">1945</span> Chateaufeuf du Pape</h1>
+								</div>
+								<div class="card-action">
+									X
+								</div>
+							</section>
+							<section class="card-supplementary-info">
+								<figure></figure>
+								<div class="more-info"></div>
+							</section>
+							<section class="card-source-price-info">
+								<small>Source: <a href="FIXME">November 1959 catalog</a></small>
+								<div class="card-price">
+									<h2>$17.40</h2>
+									<small>per case</small>
+								</div>
+								<div class="card-price">
+									<h2>$1.49</h2>
+									<small>per bottle</small>
+								</div>
+							</section>
 		        </paper-card>
 					</div>
 
