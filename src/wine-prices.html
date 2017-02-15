@@ -140,7 +140,7 @@
 		<iron-ajax
 			 id="getWinePriceData"
 			 auto
-			 url="[[url]]?__offset={{offset}}&__count=[[count]]"
+			 url="[[url]]/wine_prices?__offset={{offset}}&__count=[[count]]"
 			 method="get"
 			 handle-as="json"
 			 last-response="{{price}}"></iron-ajax>
@@ -231,11 +231,10 @@
 				 is: 'wine-prices',
 
 			properties: {
-        url: {
-             type: "text",
-             value: "http://labelthis.qjhart.org/v1/wine_prices",
-             reflectToAttribute: true
-        },
+				api: {
+					type: "text",
+					reflectToAttribute: true
+				},
         count: {
              type: "integer",
              value: 35,

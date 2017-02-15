@@ -99,7 +99,7 @@
 		<iron-ajax
 			 id="getPages"
 			 auto
-        url="[[api]]/v1/pages?catalog_id=[[catalog_id]]"
+        url="[[api]]/pages?catalog_id=[[catalog_id]]"
 			 method="get"
 			 handle-as="json"
 			 last-response="{{pages}}"></iron-ajax>
@@ -109,7 +109,7 @@
           <div class="pagesContainer">
             <div class="pages" tabindex$="[[tabIndex]]">
               <iron-image sizing="cover"
-                          src="[[api]]/v1/pages/[[page.id]]/thumbnail" alt="Catalog Thumbnail Image">
+                          src="[[api]]/pages/[[page.id]]/thumbnail" alt="Catalog Thumbnail Image">
               </iron-image>
                 <div class="detail">
                   <a href="/#/catalogs/page/[[page.id]]"> <iron-icon icon="wine:people"></iron-icon></a>

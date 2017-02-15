@@ -215,10 +215,10 @@
 
     <!-- <iron-ajax
          auto
-         url="[[api]]/v1/pages/[[page_id]]/"
+         url="[[api]]/price_marks?page_id=[[page_id]]"
          handle-as="json"
-         on-response="handleResponse"
-         last-response="{page}"
+         on-response="add_marks"
+         last-response="{marks}"
          >
          </iron-ajax> -->
 
@@ -246,12 +246,12 @@
 					value: false,
 							 reflectToAttribute: true
 					 },
-					 data : {
-							 type : Object,
-							 value : function() {
-									 return {};
-							 },
-							 observer: 'redraw'
+					 marks : {
+						 type : Object,
+						 value : function() {
+							 return {};
+						 },
+						 observer: 'add_marks_also'
 					 },
 					 map: {
 							 type: Object,
@@ -273,7 +273,7 @@
             page.redraw();
           }
 
-          img.src=this.api+'/v1/pages/'+this.page_id+'/image';
+          img.src=this.api+'/pages/'+this.page_id+'/image';
           //console.log('url: '+img.src);
         }
       },
@@ -298,7 +298,7 @@
         // Need to get bounds from image.
 				var bounds = this.bounds;
         console.log(JSON.stringify(bounds));
-				var image = L.imageOverlay(this.api+'/v1/pages/'+this.page_id+'/image', bounds).addTo(map);
+				var image = L.imageOverlay(this.api+'/pages/'+this.page_id+'/image', bounds).addTo(map);
 				map.fitBounds(bounds);
 
         var marks = new L.FeatureGroup();
@@ -348,62 +348,13 @@
 
 			},
 
-			 // edit an existing annotation
-			 edit : function (key,edits) {
-					 var fields=['type','text','geometry'];
+      /* add_marks : function () {
+       *   console.log(JSON.stringify(this.marks))
+       * },
 
-					 // We should really limit to these types
-					 var type_is_good=false;
-					 var types=['color','type','country','language',
-											'brandName','varietal','otherDesignation',
-											'winery.name','winery.address','winery.addressQualification',
-											'vintage.year','vintage.alcohol'];
-
-					 var item = this.data.annotations[key];
-					 var rc = this.annotation_rc(key);
-
-					 // Throw Errr?
-					 if (! rc) {
-							 return null;
-					 }
-
-					 var rc_path='data.row.'+rc[0]+'.'+rc[1];
-
-				 if (edits.type) {
-					 types.forEach(
-             //(t)=>{ if (t==edits.type) { type_is_good=true;}}
-             function(t) {if (t==edits.type) { type_is_good=true;}}
-           );
-					 }
-				 fields.forEach(//(f)=>{
-                        (function(f) {
-							 if (edits[f]) {
-									 item[f]=edits[f];
-									 this.set(rc.path+'.'+f,item[f]);
-							 }
-					 }).bind(this));
-					 if (edits.key) {
-							 delete this.data.annotations[key];
-							 this.data.annotations[edits.key]=item;
-					 }
-					 this.add_history('edit',key,edits);
-			 },
-			 // drop a notation from consideration
-			drop : function(keys,parms) {
-        //parms={history:true}
-					 if (typeof keys !== "object") {
-							 keys=[keys];
-					 }
-					 var i,a;
-				 keys.forEach(//(key)=>{
-                      function(key) {
-							 delete this.data.annotations[key];
-					 });
-					 if (parms.history) {
-							 this.add_history('drop',keys);
-					 }
-					 this.notifyPath('data.annotations.*');
-			 }
+       * add_marks_too : function () {
+       *   console.log("Also Add Marks")
+       * },*/
 
     });
   </script>
