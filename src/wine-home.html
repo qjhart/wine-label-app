@@ -35,31 +35,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         justify-content: center;
         flex-wrap: wrap;
       }
+      .fab-root {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+      }
+      paper-fab {
+        display: inline-block;
+        margin: 5px;
+      }
+      h2 {
+        font-weight: 200px;
+      }
     </style>
     <div class="intro">
       <h1> Uncorking the History of Wine</h1>
       <p>The wine collection at the University of California, Davis, has been called the “best in the world.” This project is part of our effort to make a digital equivalent that is broadly accessible. We can’t do it alone. We need your help in uncorking the history.</p>
     </div>
     <div class="container">
-        <paper-card heading="Label This">
-          <div class="card-content">Step back in wine history and transcribe our collection of vintage labels</div>
+        <paper-card heading="">
+          
+          <div class="card-content">
+            <h2><iron-icon icon="label"></iron-icon> Label This</h2>
+            Step back in wine history and transcribe our collection of vintage labels
+          </div>
           <div class="card-actions">
             <a name="labels" href="#/labels/list"><paper-button>FIXME ADD CALL TO ACTION</paper-button></a>
           </div>
         </paper-card>
-        <paper-card heading="Price the Vintage">
-          <div class="card-content">FIXME ADD COPY</div>
+        <paper-card heading="">
+          
+          <div class="card-content">
+            <h2><iron-icon icon="star-border"></iron-icon> Price the Vintage</h2>
+            FIXME ADD COPY
+          </div>
           <div class="card-actions">
             <a name="catalogs" href="#/catalogs/list"><paper-button>FIXME ADD CALL TO ACTION</paper-button></a>
           </div>
         </paper-card>
-        <paper-card heading="Price Search">
-          <div class="card-content">Help us chart the changing price of wine</div>
+        <paper-card heading="">
+          
+          <div class="card-content">
+            <h2><iron-icon icon="editor:attach-money"></iron-icon> Price Search</h2>
+            Help us chart the changing price of wine
+          </div>
           <div class="card-actions">
             <a name="prices" href="#/prices"><paper-button>FIXME ADD CALL TO ACTION</paper-button></a>
           </div>
         </paper-card>
     </div>
+
+    <div class="fab-root">
+      <paper-fab icon="label"></paper-fab>
+      <paper-fab icon="star-border"></paper-fab>
+      <paper-fab icon="editor:attach-money"></paper-fab>
+    </div>
+
     <!--<div class="notes">
       <h1>Acknowledgements</h1>
       <p>Code and demos can be found at the repositories, <a href="https://www.github.com/qjhart/wine-label-app" target="_blank">wine-label-app</a> and <a href="https://www.github.com/qjhart/wine-label" target="_blank">wine-label</a>.

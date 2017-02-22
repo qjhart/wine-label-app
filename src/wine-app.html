@@ -1,47 +1,30 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/app-route/app-location.html">
-<link rel="import" href="/bower_components/app-route/app-route.html">
-<link rel="import" href="/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import" href="/bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import" href="/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="/bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="/bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="/bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="/bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="/bower_components/paper-drawer-panel/paper-drawer-panel.html">
-<link rel="import" href="/bower_components/paper-header-panel/paper-header-panel.html">
-<link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
-<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="/bower_components/paper-item/paper-item.html">
-<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
-
 <link rel="import" href="wine-catalogs-list.html">
-<link rel="import" href="wine-icons.html">
 
 <dom-module id="wine-app">
-
   <template>
-
+    <style include="shared-styles"></style>
     <style>
-    .paper-tab-links a {
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      margin-top: 1em;
-    }
-
+      :host {
+        display: block;
+        position: absolute;
+        top:0;
+        left: 0;
+        right:0;
+        bottom: 0;
+      }
+      .paper-tab-links a {
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        margin-top: 1em;
+      }
+      iron-pages {
+        position: absolute;
+        top:0;
+        left: 0;
+        right:0;
+        bottom: 0;
+      }
     </style>
 
     <app-location route="{{route}}" use-hash-as-path></app-location>
@@ -51,51 +34,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                data="{{routeData}}"
                tail="{{subroute}}"></app-route>
 
-      <!-- Main content -->
-      <body class="fullbleed vertical layout">
+ 
 
-        <paper-drawer-panel class="flex" force-narrow>
-            <paper-header-panel drawer>
-              <paper-toolbar class="medium-tall"></paper-toolbar>
-              <paper-item>
-                <paper-item-body two-line>
-                  <div>User Name</div>
-                  <div secondary><a href="foo">Sign out</a></div>
-                </paper-item-body>
-              </paper-item>
-            </paper-header-panel>
-            <paper-header-panel main>
-              <paper-toolbar class="medium-tall">
-                <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-                <span class="flex">UC Davis Wine Apps</span>
-                <paper-tabs class="bottom fit paper-tab-links" selected="{{page}}" attr-for-selected="name">
-                  <paper-tab name="home"><a href="#/home">Home</a></paper-tab>
-                  <paper-tab name="labels"><a href="#/labels/list">Label This</a></paper-tab>
-                  <paper-tab name="catalogs"><a href="#/catalogs/list"> Price the Vintage</a></paper-tab>
-                  <paper-tab name="prices"><a href="#/prices">Price Search</a></paper-tab>
-                </paper-tabs>
-              </paper-toolbar>
+    <paper-header-panel>
+      <paper-toolbar>
 
-              <iron-pages
-                  style="height: 100%"
-                  role="main"
-                  selected="[[page]]"
-                  fallback-selection="404"
-                  attr-for-selected="name">
-                <wine-login name="login"></wine-login>
-                <wine-home name="home"></wine-home>
-                <wine-labels api=[[api]] name="labels"
-                             route="{{subroute}}"></wine-labels>
-                <wine-catalogs api=[[api]] name="catalogs"
-                               route="{{subroute}}"></wine-catalogs>
-                <wine-prices name="prices"></wine-prices>
-                <wine-ttb name="ttb"></wine-ttb>
-                <wine-custom name="custom"></wine-custom>
-              </iron-pages>
-            </paper-header-panel>
-        </paper-drawer-panel>
+        <span class="flex">[[label]]</span>
 
-      </body>
+        <div class="flex"></div>
+
+        <paper-menu-button horizontal-align="right" id="menu">
+          <paper-icon-button icon="more-vert" class="dropdown-trigger" style="margin:0"></paper-icon-button>
+
+          <paper-menu class="dropdown-content" id="mapLayerMenu" attr-for-selected="page">
+            <paper-item page="home">
+              <a href="#/home">Home</a>
+            </paper-item>
+            <paper-item page="labels">
+              <a href="#/labels/list">Label This</a>
+            </paper-item>
+            <paper-item page="catalogs">
+              <a href="#/catalogs/list">Price the Vintage</a>
+            </paper-item>
+            <paper-item page="prices">
+              <a href="#/prices">Price Search</a>
+            </paper-item>
+          </paper-menu>
+        </paper-menu-button>
+
+      </paper-toolbar>
+
+
+      <iron-pages
+          style="height: 100%"
+          role="main"
+          selected="[[page]]"
+          fallback-selection="404"
+          attr-for-selected="name">
+        <wine-login name="login"></wine-login>
+        <wine-home name="home"></wine-home>
+        <wine-labels api=[[api]] name="labels"
+                      route="{{subroute}}"></wine-labels>
+        <wine-catalogs api=[[api]] name="catalogs"
+                        route="{{subroute}}"></wine-catalogs>
+        <wine-prices name="prices"></wine-prices>
+        <wine-ttb name="ttb"></wine-ttb>
+        <wine-custom name="custom"></wine-custom>
+      </iron-pages>
+    </paper-header-panel>
+
+
   </template>
   <script>
     Polymer({
@@ -106,13 +94,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+        label : {
+          type : String,
+          value : 'UC Davis Wine Apps'
+        },
 				api: {
 					type: "text",
 					value: "http://localhost:3000",
 //					value: "http://api.labels.qjhart.org",
 					reflectToAttribute: true
 				},
+      },
 
+      headerLabels : {
+        home : 'UC Davis Wine Apps',
+        labels : 'Label This',
+        catalogs : 'Price the Vintage',
+        prices : 'Price Search'
       },
 
       observers: [
@@ -131,6 +129,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('wine-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
+
+        this.label = this.headerLabels[page];
+
+        this.$.menu.close();
       },
 
       _showPage404: function() {

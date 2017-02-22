@@ -1,34 +1,67 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+<style is="custom-style">
+    :root {
+        --dark-primary-color:       #388E3C;
+        --default-primary-color:    #4CAF50;
+        --light-primary-color:      #C8E6C9;
+        --text-primary-color:       #FFFFFF;
+        --accent-color:             #7C4DFF;
+        --primary-background-color: #C8E6C9;
+        --primary-text-color:       #212121;
+        --secondary-text-color:     #757575;
+        --disabled-text-color:      #BDBDBD;
+        --divider-color:            #BDBDBD;
 
-<link rel="import" href="/bower_components/polymer/polymer.html">
+        --primary-color: var(--default-primary-color);
+
+        paper-card {
+          --primary-background-color: white;
+        }
+    }
+
+    body {
+      @apply(--paper-font-common-base);
+      font-size: 14px;
+      font-weight: 300;
+      margin: 0;
+      min-height: 100vh;
+      background-color: #eee;
+    }
+
+</style>
+
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
   <template>
     <style>
 
+      .layout {
+        @apply(--layout-horizontal);
+      }
+      .stretch {
+        @apply( --layout-self-stretch:);
+      }
+      .center {
+        @apply(--layout-center);
+      }
+      .flex {
+        @apply(--layout-flex);
+      }
+
 		 a,paper-button {
 				 font-weight: bold;
 		 }
 
 		 a {
-					color: var(--primary-color);
+					/*color: var(--primary-color);*/
 		 }
 
 		 paper-button {
-				 color: var(--primary-color);
+				 /*color: var(--primary-color);*/
 		 }
 
 		 paper-button.primary {
-				 background: var(--primary-color);
+				 /*background: var(--primary-color);*/
 		 }
 
 		 blockquote {
@@ -38,10 +71,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		  }
 
       iron-icon {
-        color: var(--primary-background-color);
+        /*color: var(--primary-background-color);*/
       }
       iron-icon:hover {
-        color: var(--accent-color);
+        /*color: var(--accent-color);*/
       }
 
      .card {

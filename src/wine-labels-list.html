@@ -31,13 +31,18 @@
           color: white;
         }
 
+        .photoContainer {
+          padding: 8px;
+        }
+
         .photoContent {
           @apply(--layout);
           background-color: #ddd;
           position: relative;
           width: 300px;
           height: 300px;
-          margin: 8px;
+          /*margin: 8px;*/
+          
         }
 
         .photoContent:hover .detail{
@@ -53,7 +58,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+          background: rgba(0, 0, 0, 0.7);
           color: white;
           font-size: 20px;
           font-weight: 100;
@@ -164,18 +169,22 @@
 
       <iron-list items="[[labels.data]]" as="label" grid style="height:100%">
         <template>
+          
           <div class="photoContainer">
-            <div class="photoContent" tabindex$="[[tabIndex]]">
-                <iron-image sizing="cover"
-                            src="[[api]]/labels/[[label.id]]/thumbnail" alt="[[label.brandname]]">
-                </iron-image>
-                <div class="detail">
-                    [[label.brandname]]<br/>[[label.otherdesignation]]
-                  <a href="[[api]]/labels/[[label.id]]/image" target="_blank"> <iron-icon icon="menu"></iron-icon></a>
-<!--                  <a href="#/labels/label/[[label.wine]]"> <iron-icon icon="menu"></iron-icon></a>-->
-                </div>
-            </div>
+            <paper-material>
+              <div class="photoContent" tabindex$="[[tabIndex]]">
+                  <iron-image sizing="cover"
+                              src="[[api]]/labels/[[label.id]]/thumbnail" alt="[[label.brandname]]">
+                  </iron-image>
+                  <div class="detail">
+                      [[label.brandname]]<br/>[[label.otherdesignation]]
+                    
+                    <paper-fab icon="create" on-click="_edit" label-id$="[[label.id]]"></paper-fab>
+                  </div>
+              </div>
+            </paper-material>
           </div>
+          
         </template>
       </iron-list>
 
@@ -214,6 +223,10 @@
                return [];
              }
           }
+       },
+
+       _edit : function(e) {
+          window.open(this.api+'/labels/'+e.currentTarget.getAttribute('label-id')+'/image', '_blank');
        },
 
        ready : function() {
